@@ -423,12 +423,12 @@ window.EMAIL_CHU="eumel.order@gmail.com";
 /* ===================== KẾT NỐI FIREBASE =====================
    Thay phần dữ liệu của Claude bằng Firebase (Google): đăng nhập Google, lưu dữ liệu ở Firestore.
    Trang chính gọi window.claude.use("db"|"user"|"assets") như cũ; tệp này trả về đối tượng tương ứng.
-   Vai: chu (email trong EMAIL_CHU) · dong_chu · nhan_vien. Người chưa được duyệt thấy màn hình chờ.
+   Vai: Chủ (có tên trong he_thong/chu.ds, tối đa 3, ngang quyền nhau) · Nhân viên. Người chưa được duyệt thấy màn hình chờ.
    Quyền thật nằm ở firestore.rules trên máy chủ Google; phần dưới chỉ là giao diện. */
 (function(){
   "use strict";
   var CFG=window.FIREBASE_CONFIG||{},CHU=String(window.EMAIL_CHU||"").trim().toLowerCase();
-  var VAI_TEN={chu:"Chủ shop",dong_chu:"Đồng chủ",nhan_vien:"Nhân viên"};
+  var VAI_TEN={chu:"Chủ shop",nhan_vien:"Nhân viên"},VAI_CU={chu:1,dong_chu:1,nhan_vien:1},TOI_DA_CHU=3,DS_CHU=null;
   var NB_DAU={ty_gia_von:28380,cuoc_von:8,phi_kien:17.5,can_kien:5,vat_lieu:0.5,di_lai_chuyen:15,so_mon_chuyen:7.5,nhan_vien_don:15000};
   function $(id){return document.getElementById(id);}
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
@@ -451,7 +451,15 @@ window.EMAIL_CHU="eumel.order@gmail.com";
     ".ns .dong .mail{color:var(--muted);font-size:14px;word-break:break-all}.ns .nut{display:flex;flex-wrap:wrap;gap:8px}"+
     ".ns .nut button,.ns .nut select{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:600;font-size:15px}"+
     ".ns .nut button.chinh{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}.ns .nut button.xoa{color:var(--bad)}"+
-    ".ns h3{margin:10px 0 0;font-size:16px}.ns .trong{color:var(--muted);font-size:14px}";
+    ".ns h3{margin:10px 0 0;font-size:16px}.ns .trong{color:var(--muted);font-size:14px}"+
+    ".bar>.ghost.tb-nut{margin-left:0}"+
+    ".tb-bang{position:fixed;left:50%;transform:translateX(-50%);top:12px;z-index:40;width:min(560px,calc(100% - 24px));background:var(--card);border:2px solid var(--primary);border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.25);display:grid;gap:10px}"+
+    ".tb-bang[hidden]{display:none}.tb-bang p{margin:4px 0 0;white-space:pre-wrap;color:var(--ink)}.tb-bang b{font-size:14px}.tb-them{font-size:13px;color:var(--muted)}"+
+    ".tb-bang .nut,.tb-nut2{display:flex;gap:8px;flex-wrap:wrap}.tb-bang button{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 14px;min-height:44px;font-weight:700}"+
+    ".tb-bang button.chinh,.btn.chinh{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}"+
+    ".tb-ds{display:grid;gap:10px;max-height:52vh;overflow:auto;padding:2px}.tb-tin{border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--soft)}"+
+    ".tb-tin.minh{background:var(--card)}.tb-tin p{margin:4px 0;white-space:pre-wrap}.tb-dau{font-size:13px;color:var(--muted);font-weight:600}.tb-xem{font-size:13px;color:var(--muted)}"+
+    ".xoa-nho{background:none;border:0;color:var(--bad);font-weight:600;padding:6px 0;min-height:36px}#tbNhap{width:100%;margin-top:6px;border:1.5px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:var(--card);color:var(--ink)}";
   document.head.appendChild(css);
 
   /* ---------- màn hình đăng nhập / chờ duyệt ---------- */
@@ -522,23 +530,28 @@ window.EMAIL_CHU="eumel.order@gmail.com";
     /* lần cài đầu: chưa có chủ thì tài khoản có email chủ nhận quyền chủ (he_thong/chu + vai của mình, ghi cùng lúc) */
     var buoc=fs.doc("he_thong/chu").get().then(function(s){
       if(s.exists||!laChuMail)return;
-      var bt=fs.batch();bt.set(fs.doc("he_thong/chu"),{uid:u.uid,luc:Date.now()});bt.set(fs.doc("nguoi_dung/"+u.uid),{vai:"chu",ten:ttin.ten,email:ttin.email});return bt.commit();});
+      var bt=fs.batch();bt.set(fs.doc("he_thong/chu"),{ds:[u.uid],luc:Date.now()});bt.set(fs.doc("nguoi_dung/"+u.uid),{vai:"chu",ten:ttin.ten,email:ttin.email});return bt.commit();});
     buoc.then(function(){
-      /* nghe vai của mình: được duyệt thì mở, bị gỡ thì đóng */
-      huyNghe=fs.doc("nguoi_dung/"+u.uid).onSnapshot(function(s){
-        var v=s.exists?String((s.data()||{}).vai||""):"";
-        if(!VAI_TEN[v]){
+      /* vai thật: có tên trong danh sách chủ (he_thong/chu.ds) là Chủ; có hồ sơ được duyệt là Nhân viên; chưa có gì thì chờ duyệt */
+      var docVai=null,loiDoc=function(e){moCong("loi","Không đọc được quyền của tài khoản ("+((e&&e.code)||"lỗi")+"). Nếu vừa cài đặt, kiểm tra lại Rules của Firestore.");};
+      var h1=fs.doc("nguoi_dung/"+u.uid).onSnapshot(function(s){docVai=s.exists?String((s.data()||{}).vai||""):"";tinhVai();},loiDoc);
+      var h2=fs.doc("he_thong/chu").onSnapshot(function(s){DS_CHU=dsTu(s);tinhVai();},loiDoc);
+      huyNghe=function(){h1();h2();};
+      function tinhVai(){
+        if(docVai===null||DS_CHU===null)return;
+        var v=DS_CHU.indexOf(u.uid)>=0?"chu":(VAI_CU[docVai]?"nhan_vien":"");
+        if(!v){
           if(daXong){location.reload();return;}
           if(!daXin){daXin=true;fs.doc("xin_vao/"+u.uid).set({ten:ttin.ten,email:ttin.email,luc:Date.now()}).catch(function(){daXin=false;});}
           if(!dangCho){dangCho=true;moCong("cho_duyet",ttin.email);}return;}
-        if(daXong&&v!==ttin.vai){location.reload();return;}
-        ttin.vai=v;
-        if(!daXong){daXong=true;fs.doc("xin_vao/"+u.uid).delete().catch(function(){});
-          if(v==="chu")gieoDuLieu();
-          dongCong();themNutTaiKhoan();xong(ttin);}
-      },function(e){moCong("loi","Không đọc được quyền của tài khoản ("+((e&&e.code)||"lỗi")+"). Nếu vừa cài đặt, kiểm tra lại Rules của Firestore.");});
+        if(daXong){if(v!==ttin.vai)location.reload();else if(veil&&veil.classList.contains("open"))veTK();return;}
+        ttin.vai=v;daXong=true;fs.doc("xin_vao/"+u.uid).delete().catch(function(){});
+        if(v==="chu")gieoDuLieu();
+        dongCong();themNutTaiKhoan();batThongBao();xong(ttin);
+      }
     },function(e){moCong("loi","Không kiểm tra được quyền chủ shop ("+((e&&e.code)||"lỗi")+"). Kiểm tra email chủ trong trang và Rules của Firestore.");});
   });
+  function dsTu(s){if(!s||!s.exists)return [];var d=s.data()||{};if(Array.isArray(d.ds))return d.ds.slice();return d.uid?[d.uid]:[];}
 
   /* lần đầu chủ shop mở: tạo sẵn thông số nội bộ nếu chưa có (thông số chung do trang chính tự tạo) */
   function gieoDuLieu(){
@@ -571,43 +584,131 @@ window.EMAIL_CHU="eumel.order@gmail.com";
     var me=el("div","note");me.appendChild(el("b",null,ttin.ten));me.appendChild(document.createElement("br"));me.appendChild(document.createTextNode(ttin.email+" · "+VAI_TEN[ttin.vai]));bd.appendChild(me);
     var o=el("button","btn","Đăng xuất");o.type="button";o.addEventListener("click",dangXuat);bd.appendChild(o);
     if(ttin.vai!=="chu"){bd.appendChild(el("p","hint","Chỉ chủ shop thêm, đổi vai hoặc gỡ người dùng."));return;}
+    var ds=(DS_CHU||[]).slice(),con=TOI_DA_CHU-ds.length;
     var ns=el("div","ns");bd.appendChild(ns);
     ns.appendChild(el("h3",null,"Đang chờ duyệt"));var dc=el("div","ns");ns.appendChild(dc);
-    ns.appendChild(el("h3",null,"Người dùng của shop"));var dn=el("div","ns");ns.appendChild(dn);
-    ns.appendChild(el("p","hint","Nhân viên: chốt đơn, bán kho, báo sự cố; không thấy tiền, vốn, lãi; không sửa giờ. Đồng chủ: thấy và ghi tiền như chủ, không sửa Cài đặt. Chuyển quyền chủ: người kia thành Chủ (sửa Cài đặt, duyệt người), bạn thành Đồng chủ. Người mới đăng nhập trang sẽ hiện ở mục Đang chờ duyệt."));
+    ns.appendChild(el("h3",null,"Người dùng của shop · "+ds.length+"/"+TOI_DA_CHU+" chủ"));var dn=el("div","ns");ns.appendChild(dn);
+    ns.appendChild(el("p","hint","Có 2 cấp. Chủ shop: làm mọi thứ, các chủ ngang quyền nhau (tối đa "+TOI_DA_CHU+" chủ). Nhân viên: báo giá, chốt đơn, bán kho, báo sự cố; không thấy tiền, vốn, lãi; không sửa giờ. Giao shop cho người khác: cấp quyền Chủ cho họ, rồi bấm Thôi làm chủ ở dòng của bạn."));
+    function loi(b,t){return function(){if(b){b.disabled=false;}alert(t||"Không lưu được. Kiểm tra mạng rồi thử lại.");};}
+    function hoi2(b,chu1,lam){var n=0,goc=b.textContent;b.addEventListener("click",function(){n++;if(n===1){b.textContent=chu1;return;}b.disabled=true;lam(b);});}
     fs.collection("xin_vao").get().then(function(s){
       if(!s.size){dc.appendChild(el("div","trong","Không có ai đang chờ."));return;}
       s.docs.forEach(function(d){var x=d.data()||{},r=el("div","dong");r.appendChild(el("b",null,x.ten||"(không tên)"));r.appendChild(el("div","mail",(x.email||"")+(x.luc?" · "+gio(x.luc):"")));
         var n=el("div","nut");
-        [["nhan_vien","Duyệt làm Nhân viên","chinh"],["dong_chu","Duyệt làm Đồng chủ",""]].forEach(function(v){var b=el("button",v[2]||null,v[1]);b.type="button";
-          b.addEventListener("click",function(){b.disabled=true;fs.doc("nguoi_dung/"+d.id).set({vai:v[0],ten:x.ten||"",email:x.email||"",duyet_luc:Date.now()})
-            .then(function(){return fs.doc("xin_vao/"+d.id).delete();}).then(veTK,function(){b.disabled=false;alert("Không duyệt được. Kiểm tra mạng.");});});n.appendChild(b);});
+        var b1=el("button","chinh","Duyệt làm Nhân viên");b1.type="button";
+        b1.addEventListener("click",function(){b1.disabled=true;var bt=fs.batch();bt.set(fs.doc("nguoi_dung/"+d.id),{vai:"nhan_vien",ten:x.ten||"",email:x.email||"",duyet_luc:Date.now()});
+          bt.delete(fs.doc("xin_vao/"+d.id));bt.commit().then(veTK,loi(b1));});n.appendChild(b1);
+        if(con>0){var b2=el("button",null,"Duyệt làm Chủ");b2.type="button";
+          hoi2(b2,"Bấm lần nữa: "+(x.ten||x.email)+" thành Chủ, ngang quyền bạn",function(){var bt=fs.batch();
+            bt.set(fs.doc("nguoi_dung/"+d.id),{vai:"chu",ten:x.ten||"",email:x.email||"",duyet_luc:Date.now()});bt.set(fs.doc("he_thong/chu"),{ds:ds.concat([d.id]),luc:Date.now()},{merge:true});
+            bt.delete(fs.doc("xin_vao/"+d.id));bt.commit().then(veTK,loi(b2));});n.appendChild(b2);}
         var t=el("button","xoa","Từ chối");t.type="button";t.addEventListener("click",function(){fs.doc("xin_vao/"+d.id).delete().then(veTK);});n.appendChild(t);
         r.appendChild(n);dc.appendChild(r);});
     },function(){dc.appendChild(el("div","trong","Không đọc được danh sách chờ."));});
     fs.collection("nguoi_dung").get().then(function(s){
-      s.docs.forEach(function(d){var x=d.data()||{},r=el("div","dong");r.appendChild(el("b",null,(x.ten||"(không tên)")+(d.id===ttin.uid?" (bạn)":"")));r.appendChild(el("div","mail",(x.email||"")+" · "+(VAI_TEN[x.vai]||x.vai)));
-        if(d.id!==ttin.uid&&x.vai!=="chu"){var n=el("div","nut"),sel=el("select");sel.setAttribute("aria-label","Vai của "+(x.ten||x.email));
-          [["nhan_vien","Nhân viên"],["dong_chu","Đồng chủ"]].forEach(function(v){var op=el("option",null,v[1]);op.value=v[0];sel.appendChild(op);});sel.value=x.vai;
-          sel.addEventListener("change",function(){fs.doc("nguoi_dung/"+d.id).update({vai:sel.value}).then(veTK,function(){sel.value=x.vai;});});n.appendChild(sel);
-          var cq=el("button",null,"Chuyển quyền chủ");cq.type="button";var hoiCq=0;
-          cq.addEventListener("click",function(){hoiCq++;
-            if(hoiCq===1){cq.textContent="Chắc chưa? "+(x.ten||x.email)+" sẽ thành Chủ, bạn thành Đồng chủ";return;}
-            if(hoiCq===2){cq.textContent="Bấm lần cuối để chuyển";return;}
-            cq.disabled=true;var bt=fs.batch();bt.update(fs.doc("he_thong/chu"),{uid:d.id,luc:Date.now()});
-            bt.update(fs.doc("nguoi_dung/"+d.id),{vai:"chu"});bt.update(fs.doc("nguoi_dung/"+ttin.uid),{vai:"dong_chu"});
-            bt.commit().then(function(){location.reload();},function(){cq.disabled=false;alert("Không chuyển được. Kiểm tra mạng.");});});n.appendChild(cq);
-          var g=el("button","xoa","Gỡ khỏi shop");g.type="button";var hoi=false;
-          g.addEventListener("click",function(){if(!hoi){hoi=true;g.textContent="Bấm lần nữa để gỡ";return;}fs.doc("nguoi_dung/"+d.id).delete().then(veTK);});n.appendChild(g);r.appendChild(n);}
-        dn.appendChild(r);});
+      var hang=s.docs.map(function(d){return {id:d.id,x:d.data()||{},chu:ds.indexOf(d.id)>=0};});
+      hang.sort(function(a,b){return (b.chu-a.chu)||(a.id===ttin.uid?-1:b.id===ttin.uid?1:0);});
+      hang.forEach(function(h){var d=h,x=h.x,r=el("div","dong");
+        r.appendChild(el("b",null,(x.ten||"(không tên)")+(d.id===ttin.uid?" (bạn)":"")));r.appendChild(el("div","mail",(x.email||"")+" · "+(h.chu?"Chủ shop":"Nhân viên")));
+        var n=el("div","nut");
+        if(d.id===ttin.uid){
+          if(ds.length>1){var tl=el("button",null,"Thôi làm chủ (xuống Nhân viên)");tl.type="button";
+            hoi2(tl,"Bấm lần nữa: bạn mất quyền chủ, các chủ khác vẫn giữ shop",function(b){var bt=fs.batch();
+              bt.set(fs.doc("he_thong/chu"),{ds:ds.filter(function(i){return i!==ttin.uid;}),luc:Date.now()},{merge:true});bt.update(fs.doc("nguoi_dung/"+ttin.uid),{vai:"nhan_vien"});
+              bt.commit().then(function(){location.reload();},loi(b));});n.appendChild(tl);}
+          else r.appendChild(el("div","mail","Bạn là chủ duy nhất. Muốn giao shop: cấp quyền Chủ cho người kế nhiệm trước, rồi mới thôi làm chủ được."));
+        }else if(h.chu){
+          var ha=el("button",null,"Hạ xuống Nhân viên");ha.type="button";
+          hoi2(ha,"Bấm lần nữa để hạ "+(x.ten||x.email)+" xuống Nhân viên",function(b){var bt=fs.batch();
+            bt.set(fs.doc("he_thong/chu"),{ds:ds.filter(function(i){return i!==d.id;}),luc:Date.now()},{merge:true});bt.update(fs.doc("nguoi_dung/"+d.id),{vai:"nhan_vien"});
+            bt.commit().then(veTK,loi(b));});n.appendChild(ha);
+          var g1=el("button","xoa","Gỡ khỏi shop");g1.type="button";
+          hoi2(g1,"Bấm lần nữa để gỡ hẳn",function(b){var bt=fs.batch();bt.set(fs.doc("he_thong/chu"),{ds:ds.filter(function(i){return i!==d.id;}),luc:Date.now()},{merge:true});
+            bt.delete(fs.doc("nguoi_dung/"+d.id));bt.commit().then(veTK,loi(b));});n.appendChild(g1);
+        }else{
+          if(con>0){var cq=el("button","chinh","Cấp quyền Chủ");cq.type="button";
+            hoi2(cq,"Bấm lần nữa: "+(x.ten||x.email)+" thành Chủ, ngang quyền bạn",function(b){var bt=fs.batch();
+              bt.set(fs.doc("he_thong/chu"),{ds:ds.concat([d.id]),luc:Date.now()},{merge:true});bt.update(fs.doc("nguoi_dung/"+d.id),{vai:"chu"});
+              bt.commit().then(veTK,loi(b));});n.appendChild(cq);}
+          else n.appendChild(el("span","mail","Đã đủ "+TOI_DA_CHU+" chủ"));
+          var g=el("button","xoa","Gỡ khỏi shop");g.type="button";
+          hoi2(g,"Bấm lần nữa để gỡ",function(b){fs.doc("nguoi_dung/"+d.id).delete().then(veTK,loi(b));});n.appendChild(g);
+        }
+        if(n.childNodes.length)r.appendChild(n);dn.appendChild(r);});
     },function(){dn.appendChild(el("div","trong","Không đọc được danh sách người dùng."));});
+  }
+
+  /* ---------- bảng thông báo: chủ đăng, mọi người đọc, chủ thấy ai đã xem ---------- */
+  var TB=[],tbVeil=null,tbHienId=null;
+  function gio2(ms){function f(tz){try{return new Intl.DateTimeFormat("vi-VN",{timeZone:tz,hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit"}).format(new Date(ms));}catch(e){return "";}}
+    return "HCM "+f("Asia/Ho_Chi_Minh")+" · BRU "+f("Europe/Brussels");}
+  function chuaXem(m){return m.ai!==ttin.uid&&!(m.xem&&m.xem[ttin.uid]);}
+  function danhDauXem(ds){ds.forEach(function(m){var up={};up["xem."+ttin.uid]=Date.now();fs.doc("thong_bao_chu/"+m.id).update(up).catch(function(){});});}
+  function batThongBao(){
+    var cd=$("btnTK");if(!cd||$("btnTB"))return;
+    var b=el("button","ghost tk-nut tb-nut");b.id="btnTB";b.type="button";b.setAttribute("aria-label","Bảng thông báo");
+    b.appendChild(el("span",null,"Thông báo"));var so=el("i");so.id="tbSo";so.hidden=true;so.style.background="var(--bad)";so.style.color="#fff";b.appendChild(so);
+    b.addEventListener("click",moTB);cd.parentNode.insertBefore(b,cd.nextSibling);
+    var bn=el("div","tb-bang");bn.id="tbBang";bn.hidden=true;bn.setAttribute("role","status");document.body.appendChild(bn);
+    fs.collection("thong_bao_chu").orderBy("luc","desc").limit(60).onSnapshot(function(s){
+      TB=s.docs.map(function(d){var x=d.data()||{};x.id=d.id;return x;});veSoTB();if(tbVeil&&tbVeil.classList.contains("open"))veTB();
+    },function(){});
+  }
+  function veSoTB(){
+    var cx=TB.filter(chuaXem),so=$("tbSo");if(so){so.textContent=String(cx.length);so.hidden=!cx.length;}
+    var bn=$("tbBang");if(!bn)return;
+    if(!cx.length||(tbVeil&&tbVeil.classList.contains("open"))){bn.hidden=true;return;}
+    var m=cx[0];bn.textContent="";
+    var tx=el("div","tb-nd");tx.appendChild(el("b",null,"📢 Thông báo từ "+tenNguoi(m.ai)+" · "+gio2(m.luc)));tx.appendChild(el("p",null,m.nd||""));
+    if(cx.length>1)tx.appendChild(el("span","tb-them","Còn "+(cx.length-1)+" thông báo khác chưa xem"));
+    bn.appendChild(tx);var nt=el("div","nut");
+    var ok=el("button","chinh","Đã xem");ok.type="button";ok.addEventListener("click",function(){danhDauXem([m]);});nt.appendChild(ok);
+    if(cx.length>1){var all=el("button",null,"Xem tất cả");all.type="button";all.addEventListener("click",moTB);nt.appendChild(all);}
+    bn.appendChild(nt);bn.hidden=false;
+  }
+  var tenND={};
+  function tenNguoi(uid){if(uid===ttin.uid)return "bạn";if(tenND[uid]!=null)return tenND[uid]||"chủ shop";
+    tenND[uid]="";fs.doc("nguoi_dung/"+uid).get().then(function(s){tenND[uid]=s.exists?String((s.data()||{}).ten||""):"";veSoTB();if(tbVeil&&tbVeil.classList.contains("open"))veTB();},function(){});return "chủ shop";}
+  function moTB(){
+    if(!tbVeil){tbVeil=el("div","veil");tbVeil.id="veilTB";tbVeil.setAttribute("role","dialog");tbVeil.setAttribute("aria-modal","true");tbVeil.setAttribute("aria-labelledby","tbTitle");
+      var sh=el("div","sheet"),hd=el("header"),h2=el("h2",null,"Bảng thông báo");h2.id="tbTitle";hd.appendChild(h2);
+      var d=el("button","ghost","Đóng");d.type="button";d.addEventListener("click",dongTB);hd.appendChild(d);sh.appendChild(hd);
+      var bd=el("div","body");bd.id="tbBody";sh.appendChild(bd);tbVeil.appendChild(sh);
+      tbVeil.addEventListener("click",function(e){if(e.target===tbVeil)dongTB();});
+      document.addEventListener("keydown",function(e){if(e.key==="Escape"&&tbVeil.classList.contains("open"))dongTB();});
+      document.body.appendChild(tbVeil);}
+    veTB();tbVeil.classList.add("open");tbVeil.style.display="flex";$("tbBang").hidden=true;
+    danhDauXem(TB.filter(chuaXem));
+  }
+  function dongTB(){if(tbVeil){tbVeil.classList.remove("open");tbVeil.style.display="";}veSoTB();}
+  function veTB(){
+    var bd=$("tbBody"),giu=bd.querySelector("textarea"),nhap=giu?giu.value:"";bd.textContent="";
+    var ds=TB.slice().reverse(),list=el("div","tb-ds");
+    if(!ds.length)list.appendChild(el("div","trong","Chưa có thông báo nào."));
+    ds.forEach(function(m){var r=el("div","tb-tin"+(m.ai===ttin.uid?" minh":""));
+      r.appendChild(el("div","tb-dau",tenNguoi(m.ai)+" · "+gio2(m.luc)));r.appendChild(el("p",null,m.nd||""));
+      if(ttin.vai==="chu"){var ai=Object.keys(m.xem||{}).filter(function(k){return k!==m.ai;});
+        r.appendChild(el("div","tb-xem",ai.length?"Đã xem: "+ai.map(function(k){return tenNguoi(k);}).join(", "):"Chưa ai xem"));
+        var x=el("button","xoa-nho","Xoá");x.type="button";var h=false;x.addEventListener("click",function(){if(!h){h=true;x.textContent="Bấm lần nữa để xoá";return;}fs.doc("thong_bao_chu/"+m.id).delete();});r.appendChild(x);}
+      list.appendChild(r);});
+    bd.appendChild(list);
+    if(ttin.vai==="chu"){
+      var lb=el("label","f");lb.setAttribute("for","tbNhap");lb.appendChild(document.createTextNode("Viết thông báo cho cả shop"));
+      var ta=el("textarea");ta.id="tbNhap";ta.maxLength=500;ta.rows=3;ta.placeholder="Ví dụ: Từ hôm nay đổi tỷ giá tự nhập thành 29.600, nhớ cập nhật.";ta.value=nhap;lb.appendChild(ta);bd.appendChild(lb);
+      var g=el("button","btn chinh","Gửi thông báo");g.type="button";
+      g.addEventListener("click",function(){var nd=ta.value.replace(/\s+$/,"").trim();if(!nd){ta.focus();return;}g.disabled=true;
+        var xem={};xem[ttin.uid]=Date.now();
+        fs.collection("thong_bao_chu").add({nd:nd.slice(0,500),ai:ttin.uid,luc:Date.now(),xem:xem}).then(function(){ta.value="";g.disabled=false;},function(){g.disabled=false;alert("Không gửi được. Kiểm tra mạng.");});});
+      bd.appendChild(g);bd.appendChild(el("p","hint","Mọi người trong shop sẽ thấy thông báo hiện ngay ở đầu trang cho tới khi bấm Đã xem. Bạn thấy được ai đã xem."));
+    }else bd.appendChild(el("p","hint","Chỉ chủ shop đăng thông báo. Có thông báo mới, trang sẽ hiện ở đầu màn hình."));
+    list.scrollTop=list.scrollHeight;
   }
 
   /* ---------- thay window.claude ---------- */
   var tenCache={};
   var userApi={
     isOwner:function(){return Promise.resolve(ttin.vai==="chu");},
-    canEdit:function(){return Promise.resolve(ttin.vai==="chu"||ttin.vai==="dong_chu");},
+    canEdit:function(){return Promise.resolve(ttin.vai==="chu");},
     can:function(){return Promise.resolve(true);},
     id:function(){return Promise.resolve(ttin.uid);},
     me:function(){return Promise.resolve({id:ttin.uid,name:ttin.ten});},
