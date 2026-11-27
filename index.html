@@ -317,6 +317,10 @@ details.kc summary{cursor:pointer;font-weight:700;min-height:28px}
         <input class="num" type="text" id="congTay" inputmode="decimal" autocomplete="off" placeholder="Tự động">
       </label>
       <p class="hint" id="congHint" style="margin-top:6px"></p>
+      <label class="f" for="bhTay" style="margin-top:10px">Bảo hiểm cho món này · chỉ chủ shop thấy
+        <select id="bhTay"><option value="">Tự động</option><option value="co">Có mua bảo hiểm</option><option value="khong">Không mua bảo hiểm</option></select>
+      </label>
+      <p class="hint" id="bhHint" style="margin-top:6px"></p>
     </div>
     <div>
       <div class="tgrow">
@@ -683,16 +687,19 @@ function tinhGia(c,nb,h,o){
   /* chủ shop gõ % riêng cho món: dùng đúng % đó, không áp mức tối thiểu 2 €/món */
   var cong=congTay?(tienHang+ship)*o.congTay:Math.max((tienHang+ship)*muc,ts.cong_toi_thieu*sl);
   if(congTay)muc=o.congTay;
-  var coBH=o.gia>=ts.nguong_bh;
+  var coBH=o.gia>=ts.nguong_bh,bhTuDong=coBH;
+  /* chủ shop chọn tay cho từng món: "co" = mua bảo hiểm cả với món rẻ, "khong" = bỏ bảo hiểm cả với món từ ngưỡng */
+  if(o.bh==="co")coBH=true;else if(o.bh==="khong")coBH=false;
   var phuThu=coBH?0:(h.nuoc_hoa?ts.phu_thu_nuoc_hoa:ts.phu_thu_khac)*sl;
   var baoHiem=coBH?o.gia*ts.phi_bh*sl:0;
   var dongGoi=h.de_vo?ts.dong_goi*sl:0;
   var quy=(h.de_vo&&!coBH)?ts.quy_rui_ro*sl:0;
   var cuoc=can*ts.cuoc_bao;
   var tong=tienHang+ship+cong+phuThu+baoHiem+dongGoi+quy+cuoc;
-  var r={ten:h.ten,sl:sl,gia:o.gia,noi:o.noi||"Web",trang:tr?tr.ten:null,veDuc:!!(tr&&tr.ve_duc),mienShip:!!(tr&&ship===0),tienHang:tienHang,ship:ship,muc:muc,congTay:congTay,cong:cong,phuThu:phuThu,baoHiem:baoHiem,
+  var r={ten:h.ten,sl:sl,gia:o.gia,noi:o.noi||"Web",trang:tr?tr.ten:null,veDuc:!!(tr&&tr.ve_duc),mienShip:!!(tr&&ship===0),tienHang:tienHang,ship:ship,muc:muc,congTay:congTay,bhTay:(coBH!==bhTuDong)?(coBH?"co":"khong"):null,cong:cong,phuThu:phuThu,baoHiem:baoHiem,
     deVo:dongGoi+quy,can:can,cuoc:cuoc,tong:tong,tyGia:tg,giaBao:lamTron(tong*tg,ts.lam_tron),canhBao:[],von:null,diLai:0};
-  if(coBH)r.canhBao.push("Món từ "+fmtEur(ts.nguong_bh,0)+": đã cộng bảo hiểm "+fmtPt(ts.phi_bh)+".");
+  if(coBH)r.canhBao.push((bhTuDong?"Món từ "+fmtEur(ts.nguong_bh,0)+": ":"Chủ shop chọn mua bảo hiểm: ")+"đã cộng bảo hiểm "+fmtPt(ts.phi_bh)+".");
+  if(!coBH&&bhTuDong)r.canhBao.push("Món này KHÔNG mua bảo hiểm: mất hoặc hư thì hãng chỉ đền theo cân nặng (khoảng 20 €/kg). Báo khách trước khi chốt.");
   if(o.gia>ts.tran_den)r.canhBao.push("Trên "+fmtEur(ts.tran_den,0)+": hãng chỉ đền tối đa "+fmtEur(ts.tran_den,0)+" mỗi món. Thu cọc 100% và báo khách trước.");
   if(h.de_vo&&!coBH)r.canhBao.push("Hàng dễ vỡ không bảo hiểm: vỡ thì hãng chỉ đền theo cân nặng.");
   if(theTich>canMon*sl)r.canhBao.push("Hàng cồng kềnh: đang tính cước theo cân thể tích.");
@@ -872,9 +879,10 @@ if(typeof document!=="undefined")(function(){
   }
   function docNhap(){
     var h=hangChon(),g=docSo($("gia").value);if(!h||g==null||g<=0)return null;
+    var bhC=laChu?($("bhTay").value||null):null;
     var ct=laChu?docSo($("congTay").value):null;if(ct!=null&&(ct<0||ct>50))ct=null;
     return {ten:h.ten,gia:g,sl:chon.sl,noi:chon.noi,trang:chon.noi==="Web"?chon.trang:"",ship:(chon.noi==="Web"&&chon.trang)?0:(docSo($("ship").value)||0),canThuc:docSo($("canThuc").value),
-      dai:docSo($("dai").value),rong:docSo($("rong").value),cao:docSo($("cao").value),congTay:ct==null?null:Math.round(ct*10)/1000};
+      dai:docSo($("dai").value),rong:docSo($("rong").value),cao:docSo($("cao").value),congTay:ct==null?null:Math.round(ct*10)/1000,bh:bhC};
   }
   function tinhDong(o){var h=null,i;for(i=0;i<cfg.loai_hang.length;i++)if(cfg.loai_hang[i].ten===o.ten){h=cfg.loai_hang[i];break;}
     if(!h)h=H(o.ten,"Khác",o.canGoc||0.3,false,false);return tinhGia(C(),noiBo,h,o);}
@@ -901,10 +909,12 @@ if(typeof document!=="undefined")(function(){
     veTyGia();
     var o=docNhap(),box=$("khoan"),cb=$("canhBao"),nbx=$("noiBo");box.textContent="";cb.hidden=true;nbx.hidden=true;
     $("viDu").hidden=daGo;$("congO").hidden=!laChu;
-    if(!o){kq=null;$("tong").textContent="—";$("tongNho").textContent="—";var h=hangChon();$("moTa").textContent=h?("Nhập giá trên web cho: "+h.ten):"Chọn một món ở trên";return;}
+    if(!o){kq=null;$("bhHint").textContent="";$("congHint").textContent="";$("bhTay").options[0].textContent="Tự động";$("tong").textContent="—";$("tongNho").textContent="—";var h=hangChon();$("moTa").textContent=h?("Nhập giá trên web cho: "+h.ten):"Chọn một món ở trên";return;}
     kq=tinhGia(C(),noiBo,hangChon(),o);
     if(laChu){var ts0=C().thong_so,tu=mucCong(ts0,o.gia);if(o.noi==="Cửa hàng")tu=Math.max(tu,ts0.cong_cua_hang||0);
       $("congTay").placeholder="Tự động: "+fmtPt(tu);
+      var bhAuto=o.gia>=ts0.nguong_bh;$("bhTay").options[0].textContent="Tự động: "+(bhAuto?"có, vì món từ "+fmtEur(ts0.nguong_bh,0):"không, vì món dưới "+fmtEur(ts0.nguong_bh,0));
+      $("bhHint").textContent=kq.bhTay==="khong"?"Đã bỏ bảo hiểm cho món này: giá giảm "+fmtEur(o.gia*ts0.phi_bh*kq.sl)+", nhưng mất hư chỉ được đền theo cân nặng.":(kq.bhTay==="co"?"Đã thêm bảo hiểm "+fmtPt(ts0.phi_bh)+" cho món này: mất hư được đền 100% giá món.":"Để Tự động thì món từ "+fmtEur(ts0.nguong_bh,0)+" có bảo hiểm, món rẻ hơn thì không.");
       $("congHint").textContent=kq.congTay?("Đang dùng "+fmtPt(kq.muc)+" gõ tay thay cho "+fmtPt(tu)+" tự động, không áp mức tối thiểu "+fmtEur(ts0.cong_toi_thieu,0)+". Xoá ô để quay về tự động."):"Để trống thì dùng bậc tự động. Gõ số, ví dụ 5, để đổi % công riêng cho món này. Nhân viên không thấy ô này.";}
     var t=$("tong");t.textContent=cham(kq.giaBao)+" ";t.appendChild(el("small",null,"đ"));$("tongNho").textContent=fmtVnd(kq.giaBao);
     $("moTa").textContent=kq.sl+" × "+kq.ten+" · giá web "+fmtEur(kq.gia)+" · "+(kq.noi==="Cửa hàng"?"mua tại cửa hàng":(kq.trang?"đặt "+kq.trang:"đặt web khác"));
@@ -931,7 +941,7 @@ if(typeof document!=="undefined")(function(){
     var dong=gopShip(C(),don).map(tinhDong);
     if(!dong.length)box.appendChild(el("div","empty","Chưa có món nào. Bấm Thêm vào đơn ở khung giá."));
     dong.forEach(function(d,i){var r=el("div","oi"),a=el("div");
-      a.appendChild(el("div","n",d.sl+" × "+d.ten));a.appendChild(el("div","m num","giá web "+fmtEur(d.gia)+" · "+fmtKg(d.can)+" · "+(d.noi==="Cửa hàng"?"cửa hàng":((d.trang||"web khác")+(d.trang?(d.mienShip?", miễn ship":(laChu?", ship "+fmtEur(d.ship):"")):""))+(laChu&&d.congTay?" · công gõ tay "+fmtPt(d.muc):""))));
+      a.appendChild(el("div","n",d.sl+" × "+d.ten));a.appendChild(el("div","m num","giá web "+fmtEur(d.gia)+" · "+fmtKg(d.can)+" · "+(d.noi==="Cửa hàng"?"cửa hàng":((d.trang||"web khác")+(d.trang?(d.mienShip?", miễn ship":(laChu?", ship "+fmtEur(d.ship):"")):""))+(laChu&&d.congTay?" · công gõ tay "+fmtPt(d.muc):"")+(laChu&&d.bhTay?(d.bhTay==="co"?" · có bảo hiểm (chọn tay)":" · không bảo hiểm"):""))));
       r.appendChild(a);r.appendChild(el("div","p num",fmtVnd(d.giaBao)));
       var x=el("button",null,"×");x.type="button";x.setAttribute("aria-label","Xoá "+d.ten+" khỏi đơn");
       x.addEventListener("click",function(){don.splice(i,1);veDon();});r.appendChild(x);box.appendChild(r);});
@@ -1083,11 +1093,12 @@ if(typeof document!=="undefined")(function(){
   $("gia").addEventListener("focus",function(){var t=this;setTimeout(function(){try{t.setSelectionRange(0,t.value.length);}catch(e){}},0);});
   $("gia").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("btnThem").click();}});
   ["ship","canThuc","dai","rong","cao","congTay"].forEach(function(id){$(id).addEventListener("input",tinh);});
+  $("bhTay").addEventListener("change",tinh);
   $("slTru").addEventListener("click",function(){chon.sl=Math.max(1,chon.sl-1);$("sl").textContent=chon.sl;tinh();});
   $("slCong").addEventListener("click",function(){chon.sl=Math.min(99,chon.sl+1);$("sl").textContent=chon.sl;tinh();});
   $("noiMua").addEventListener("change",function(){docNoiMua();tinh();});
   $("btnThem").addEventListener("click",function(){var o=docNhap();if(!o){bao("bao1","Hãy chọn món và nhập giá trên web.");$("gia").focus();return;}
-    don.push(o);veDon();bao("bao1","Đã thêm vào đơn.");daGo=true;$("gia").value="";$("congTay").value="";chon.sl=1;$("sl").textContent="1";tinh();});
+    don.push(o);veDon();bao("bao1","Đã thêm vào đơn.");daGo=true;$("gia").value="";$("congTay").value="";$("bhTay").value="";chon.sl=1;$("sl").textContent="1";tinh();});
   $("btnChepGia").addEventListener("click",function(){if(!kq){bao("bao1","Chưa có giá để sao chép.");return;}
     chep(kq.ten+" (giá web "+fmtEur(kq.gia)+") × "+kq.sl+": "+fmtVnd(kq.giaBao)+" về tới Việt Nam.","bao1");});
   $("giam").addEventListener("input",veDon);
