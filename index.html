@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Báo giá">
 <title>Báo giá order Bỉ Việt</title>
-<meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -177,92 +179,6 @@ details.more summary{font-weight:600;font-size:14px;color:var(--muted);cursor:po
 .hrow input[type=checkbox]{width:22px;height:22px;vertical-align:middle;margin-right:6px}
 .hrow .opts label{display:inline-flex;align-items:center;min-height:44px}
 textarea{width:100%;min-height:220px;border:1.5px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);color:var(--ink);-webkit-appearance:none;appearance:none}
-/* ===== Quản lý shop ===== */
-.tabs{flex:1 0 100%;display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;padding:2px 0 0}
-.tabs::-webkit-scrollbar{display:none}
-.tabs button{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:8px 4px;font-weight:700;min-height:44px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;min-width:0}
-@media (min-width:600px){.tabs{grid-auto-columns:max-content}.tabs button{padding:8px 18px;font-size:15px}}
-.tabs button[aria-pressed=true]{background:var(--ink);color:var(--card);border-color:var(--ink)}
-.tabs .so{display:inline-block;min-width:20px;padding:0 5px;margin-left:4px;border-radius:999px;background:var(--air-red);color:#fff;font-size:12px;line-height:22px;text-align:center}
-.ql-mode .live{display:none}
-.qlw{max-width:1180px;margin:0 auto;padding:14px 16px calc(48px + env(safe-area-inset-bottom,0px));display:grid;gap:12px}
-.qlbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.qlbar>input[type=search]{flex:1 1 240px}
-.qlbar>button,.kc .nut button,.kc .nut select,.sheet .xoa,.dong .nho{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 14px;min-height:44px;font-weight:600;font-size:15px}
-.qlbar>button.chinh,.kc .nut button.chinh{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}
-.sheet .xoa,.kc .nut button.xoa{color:var(--bad)}
-.kc .nut select{width:auto;padding-right:36px;min-height:44px}
-.kyw{flex:1 1 100%;display:grid;gap:6px}
-.chip[aria-pressed=true]{background:var(--ink);color:var(--card);border-color:var(--ink)}
-.kyr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.qlnoi{display:grid;gap:12px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:grid;gap:2px}
-.kpi small{color:var(--muted);font-size:13px}
-.kpi b{font-family:var(--font-display);font-size:clamp(20px,6.4vw,26px);line-height:1.1;white-space:nowrap}
-b.pos,.kpi b.pos{color:var(--good)} b.neg,.kpi b.neg{color:var(--bad)}
-.ds{display:grid;gap:10px}
-@media (min-width:900px){.ds.hai{grid-template-columns:1fr 1fr}}
-.kc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:8px;align-content:start}
-.kc.loi{border-color:var(--bad);border-width:1.5px}
-.kc.cho{border-color:var(--air-red);border-width:1.5px}
-.kc .dau{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:12px;align-items:start}
-.kc .anh{width:72px;height:72px;border-radius:10px;object-fit:cover;background:var(--soft);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;padding:4px}
-.kc .ten{font-weight:700;font-size:17px}
-.phu{color:var(--muted);font-size:14px}
-.ghichu{margin:0;font-size:14px;background:var(--soft);border-radius:8px;padding:8px 10px;overflow-wrap:anywhere}
-.nb{font-size:14px;border:1.5px dashed var(--line);border-radius:10px;padding:8px 10px;display:grid;gap:2px}
-.badge{display:inline-block;border-radius:999px;padding:4px 10px;font-weight:700;font-size:13px;background:var(--soft);white-space:nowrap;justify-self:start}
-.badge.do{background:var(--bad);color:#fff}.badge.xanh{background:var(--good);color:#fff}.badge.vang{background:var(--warn-bg);color:var(--warn-ink)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge.do,:root:not([data-theme="light"]) .badge.xanh{color:#0E1420}}
-.kc .nut{display:flex;flex-wrap:wrap;gap:8px}
-.gio{color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums}
-.tien{font-family:var(--font-display);font-weight:700;font-size:22px;white-space:nowrap}
-.tien.thu{color:var(--good)}.tien.chi{color:var(--bad)}
-.hang{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-.dong{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:4px;background:var(--card)}
-.dong .nho{justify-self:start;min-height:40px;padding:6px 12px;font-size:14px}
-.ngayh{font-weight:700;margin-top:6px;color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
-ul.mon{margin:0;padding-left:20px;font-size:14px;display:grid;gap:2px}
-.suco{border-radius:10px;background:var(--warn-bg);color:var(--warn-ink);padding:10px 12px;display:grid;gap:6px;font-size:14px}
-.suco .phu{color:inherit;opacity:.9}
-.f2{display:grid;gap:12px}
-@media (min-width:560px){.f2{grid-template-columns:1fr 1fr}}
-.qlf{display:grid;gap:6px;font-weight:600;font-size:14px;border:0;padding:0;margin:0;min-width:0}
-.qlf legend{padding:0;margin-bottom:4px}
-.qlf input,.qlf select,.qlf textarea{font-weight:400}
-.qlf input[type=date],.qlf input[type=datetime-local]{width:100%;border:1.5px solid var(--line);border-radius:10px;background:var(--card);padding:10px 12px;min-height:46px;-webkit-appearance:none;appearance:none}
-.qlf input[type=file]{font-size:14px;max-width:100%}
-.qlf textarea{min-height:84px}
-.anhs{display:flex;gap:10px;flex-wrap:wrap}
-.anhs figure{margin:0;position:relative}
-.anhs img{width:88px;height:88px;object-fit:cover;border-radius:10px;border:1px solid var(--line);display:block}
-.anhs button{position:absolute;top:-10px;right:-10px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--bad);font-size:20px;line-height:1}
-.seg2{display:flex;border:1.5px solid var(--line);border-radius:10px;overflow:hidden}
-.seg2 button{flex:1;border:0;background:var(--card);padding:10px;font-weight:700;min-height:46px}
-.seg2 button[aria-pressed=true]{background:var(--ink);color:var(--card)}
-.toast.err{color:var(--bad)}
-details.kc summary{cursor:pointer;font-weight:700;min-height:28px}
-.chot{margin-top:2px}
-
-/* nhãn hai luồng đơn: xanh dương = Order, tím = Có sẵn (khác đỏ/xanh lá/vàng của cảnh báo, trạng thái) */
-:root{--order-bg:#E3EDFA;--order-ink:#1D4E89;--order-bd:#1D5FB0;--cosan-bg:#F0E8FC;--cosan-ink:#5B2BA8;--cosan-bd:#6A37C2}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--order-bg:#1C2E4D;--order-ink:#A9CBF5;--order-bd:#6FA3E6;--cosan-bg:#2E2346;--cosan-ink:#D3BDF7;--cosan-bd:#A57FE6}}
-:root[data-theme="dark"]{--order-bg:#1C2E4D;--order-ink:#A9CBF5;--order-bd:#6FA3E6;--cosan-bg:#2E2346;--cosan-ink:#D3BDF7;--cosan-bd:#A57FE6}
-.nhan{display:inline-block;border-radius:6px;padding:3px 10px;font-weight:800;font-size:13px;white-space:nowrap;color:#fff}
-.nhan.order{background:#1D5FB0}
-.nhan.cosan{background:#6A37C2}
-.kc.don.l-order{border-left:6px solid var(--order-bd)}
-.kc.don.l-cosan{border-left:6px solid var(--cosan-bd)}
-.kc.don.loi{border-left-color:var(--bad)}
-.tenkh{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
-.chip.order[aria-pressed=true]{background:var(--order-bd);border-color:var(--order-bd);color:#fff}
-.chip.cosan[aria-pressed=true]{background:var(--cosan-bd);border-color:var(--cosan-bd);color:#fff}
-.chip.order{color:var(--order-ink)}.chip.cosan{color:var(--cosan-ink)}
-.kc.tin{background:var(--soft);font-weight:600}
-.nb .hint{font-size:13px}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.order[aria-pressed=true],:root:not([data-theme="light"]) .chip.cosan[aria-pressed=true]{color:#0E1420}}
-:root[data-theme="dark"] .chip.order[aria-pressed=true],:root[data-theme="dark"] .chip.cosan[aria-pressed=true]{color:#0E1420}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -281,12 +197,11 @@ details.kc summary{cursor:pointer;font-weight:700;min-height:28px}
     <div><small>Giá báo khách</small><b class="num" id="tongNho" aria-hidden="true">—</b></div>
     <button class="btn main" type="button" id="btnThemNho">Thêm vào đơn</button>
   </div>
-  <nav class="tabs" id="tabs" aria-label="Chọn mục" hidden></nav>
 </header>
 
 <div class="notes" id="thongBao" role="status" aria-live="polite" hidden></div>
 
-<main class="grid" id="vBaoGia">
+<main class="grid">
   <section class="card" aria-labelledby="h1a">
     <h2 id="h1a"><span class="step">1</span>Chọn món và nhập giá</h2>
     <input type="search" id="tim" placeholder="Tìm nhanh: jeans, polo, nước hoa…" aria-label="Tìm loại hàng" autocomplete="off">
@@ -365,12 +280,10 @@ details.kc summary{cursor:pointer;font-weight:700;min-height:28px}
         <button class="btn main" type="button" id="btnChepDon">Sao chép báo giá gửi khách</button>
         <button class="btn danger" type="button" id="btnXoaDon">Xoá cả đơn</button>
       </div>
-      <button class="btn main chot" type="button" id="btnChot" hidden>Chốt đơn: lưu vào mục Đơn</button>
       <p class="toast" id="bao2" role="status"></p>
     </section>
   </div>
 </main>
-<section class="qlw" id="vQL" aria-live="polite" hidden></section>
 
 <div class="veil" id="veilCD" role="dialog" aria-modal="true" aria-labelledby="cdTitle">
   <div class="sheet">
@@ -386,221 +299,6 @@ details.kc summary{cursor:pointer;font-weight:700;min-height:28px}
   </div>
 </div>
 
-<div class="veil" id="veilQL" role="dialog" aria-modal="true" aria-labelledby="qlTitle">
-  <div class="sheet">
-    <header><h2 id="qlTitle">Quản lý</h2><button class="ghost" type="button" id="qlDong">Đóng</button></header>
-    <div class="body" id="qlBody"></div>
-    <footer><p class="toast" id="qlBao" role="status" style="flex:1 1 200px"></p><button class="btn main" type="button" id="qlLuu">Lưu</button></footer>
-  </div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script>
-/* ==== CẤU HÌNH: dán từ Firebase (Project settings → Your apps) và email chủ shop ==== */
-window.FIREBASE_CONFIG={
- "apiKey": "AIzaSyD5fyIoFE71zzfPBzZLAvUw7WYBcicXsC0",
- "authDomain": "baogia-shop.firebaseapp.com",
- "projectId": "baogia-shop",
- "storageBucket": "baogia-shop.firebasestorage.app",
- "messagingSenderId": "506835489006",
- "appId": "1:506835489006:web:e244745931d8ec0d31a3ff"
-};
-window.EMAIL_CHU="eumel.order@gmail.com";
-</script>
-<script>
-/* ===================== KẾT NỐI FIREBASE =====================
-   Thay phần dữ liệu của Claude bằng Firebase (Google): đăng nhập Google, lưu dữ liệu ở Firestore.
-   Trang chính gọi window.claude.use("db"|"user"|"assets") như cũ; tệp này trả về đối tượng tương ứng.
-   Vai: chu (email trong EMAIL_CHU) · dong_chu · nhan_vien. Người chưa được duyệt thấy màn hình chờ.
-   Quyền thật nằm ở firestore.rules trên máy chủ Google; phần dưới chỉ là giao diện. */
-(function(){
-  "use strict";
-  var CFG=window.FIREBASE_CONFIG||{},CHU=String(window.EMAIL_CHU||"").trim().toLowerCase();
-  var VAI_TEN={chu:"Chủ shop",dong_chu:"Đồng chủ",nhan_vien:"Nhân viên"};
-  var NB_DAU={ty_gia_von:28380,cuoc_von:8,phi_kien:17.5,can_kien:5,vat_lieu:0.5,di_lai_chuyen:15,so_mon_chuyen:7.5,nhan_vien_don:15000};
-  function $(id){return document.getElementById(id);}
-  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
-  function gio(ms){try{return new Intl.DateTimeFormat("vi-VN",{timeZone:"Asia/Ho_Chi_Minh",hour:"2-digit",minute:"2-digit",day:"2-digit",month:"2-digit",year:"numeric"}).format(new Date(ms));}catch(e){return "";}}
-
-  var css=document.createElement("style");
-  css.textContent=
-    "#cong{position:fixed;inset:0;z-index:50;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px}"+
-    "#cong[hidden]{display:none}"+
-    "#cong .hop{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 22px;max-width:420px;width:100%;display:grid;gap:14px;text-align:left}"+
-    "#cong h1{font-family:var(--font-display);font-size:28px;margin:0;line-height:1.1}"+
-    "#cong p{margin:0;color:var(--muted)}#cong p b{color:var(--ink)}"+
-    "#cong .gg{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font-weight:700;font-size:16px}"+
-    "#cong .gg svg{width:20px;height:20px}#cong .loi{color:var(--bad);font-weight:600}"+
-    "#cong .phu{font-size:14px}#cong button.lk{background:none;border:0;color:var(--primary);font-weight:600;padding:8px 0;text-align:left;min-height:44px}"+
-    ".bar>.ghost.tk-nut{display:inline-flex;align-items:center;gap:6px;max-width:220px;margin-left:auto;min-height:44px}@media (max-width:759px){.bar>.ghost.tk-nut{max-width:170px;padding:6px 10px}}"+
-    ".tk-nut{display:inline-flex;align-items:center;gap:6px;max-width:200px}.tk-nut span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}"+
-    ".tk-nut i{font-style:normal;font-size:11px;font-weight:800;border-radius:6px;padding:2px 6px;background:var(--soft);color:var(--ink)}"+
-    ".ns{display:grid;gap:8px}.ns .dong{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px;background:var(--card)}"+
-    ".ns .dong .mail{color:var(--muted);font-size:14px;word-break:break-all}.ns .nut{display:flex;flex-wrap:wrap;gap:8px}"+
-    ".ns .nut button,.ns .nut select{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 12px;min-height:44px;font-weight:600;font-size:15px}"+
-    ".ns .nut button.chinh{background:var(--primary);color:var(--on-primary);border-color:var(--primary)}.ns .nut button.xoa{color:var(--bad)}"+
-    ".ns h3{margin:10px 0 0;font-size:16px}.ns .trong{color:var(--muted);font-size:14px}";
-  document.head.appendChild(css);
-
-  /* ---------- màn hình đăng nhập / chờ duyệt ---------- */
-  var cong=el("div");cong.id="cong";cong.setAttribute("role","dialog");cong.setAttribute("aria-modal","true");cong.setAttribute("aria-labelledby","congTitle");
-  var hop=el("div","hop");cong.appendChild(hop);
-  function veCong(kieu,them){
-    hop.textContent="";var h=el("h1",null,"Báo giá order");h.id="congTitle";hop.appendChild(h);
-    if(kieu==="cho"){hop.appendChild(el("p",null,"Đang kết nối…"));return;}
-    if(kieu==="dang_nhap"){
-      hop.appendChild(el("p",null,"Trang nội bộ của shop. Đăng nhập bằng tài khoản Google mà chủ shop đã duyệt."));
-      var b=el("button","gg");b.type="button";
-      b.innerHTML='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
-      b.appendChild(document.createTextNode("Đăng nhập bằng Google"));b.addEventListener("click",dangNhap);hop.appendChild(b);
-      if(them)hop.appendChild(el("p","loi",them));return;}
-    if(kieu==="cho_duyet"){
-      var p=el("p");p.appendChild(document.createTextNode("Tài khoản "));p.appendChild(el("b",null,them||""));p.appendChild(document.createTextNode(" đã gửi yêu cầu vào trang."));hop.appendChild(p);
-      hop.appendChild(el("p",null,"Nhắn chủ shop mở trang, bấm nút tài khoản ở góc trên rồi duyệt bạn. Duyệt xong trang này tự mở, không cần tải lại."));
-      var o=el("button","lk","Đăng xuất, dùng tài khoản khác");o.type="button";o.addEventListener("click",dangXuat);hop.appendChild(o);return;}
-    if(kieu==="loi"){hop.appendChild(el("p","loi",them||"Không kết nối được."));
-      var r=el("button","gg","Thử lại");r.type="button";r.addEventListener("click",function(){location.reload();});hop.appendChild(r);
-      var o2=el("button","lk","Đăng xuất");o2.type="button";o2.addEventListener("click",dangXuat);hop.appendChild(o2);}
-  }
-  function moCong(kieu,them){veCong(kieu,them);cong.hidden=false;document.body.style.overflow="hidden";}
-  function dongCong(){cong.hidden=true;document.body.style.overflow="";}
-  function gan(){document.body.appendChild(cong);moCong("cho");}
-  if(document.body)gan();else document.addEventListener("DOMContentLoaded",gan);
-
-  if(!window.firebase||!CFG.apiKey){
-    var thieu=function(){moCong("loi",!window.firebase?"Không tải được thư viện Firebase. Kiểm tra mạng rồi thử lại.":"Trang chưa có cấu hình Firebase (FIREBASE_CONFIG).");};
-    if(document.body)thieu();else document.addEventListener("DOMContentLoaded",thieu);
-    window.claude={use:function(){return new Promise(function(){});}};return;
-  }
-
-  firebase.initializeApp(CFG);
-  var auth=firebase.auth(),fs=firebase.firestore();
-  try{if(fs.settings)fs.settings({ignoreUndefinedProperties:true});}catch(e){}
-  var ttin={vai:"",uid:null,email:"",ten:""},xong,san=new Promise(function(r){xong=r;}),daXong=false,huyNghe=null,daXin=false,dangCho=false;
-
-  function dangNhap(){
-    var gp=new firebase.auth.GoogleAuthProvider();gp.setCustomParameters({prompt:"select_account"});
-    auth.signInWithPopup(gp).catch(function(e){
-      var c=e&&e.code;
-      if(c==="auth/popup-blocked"||c==="auth/operation-not-supported-in-this-environment"){auth.signInWithRedirect(gp);return;}
-      if(c==="auth/popup-closed-by-user"||c==="auth/cancelled-popup-request")return;
-      if(c==="auth/unauthorized-domain"){moCong("dang_nhap","Tên miền này chưa được thêm vào Firebase (Authentication → Settings → Authorized domains).");return;}
-      moCong("dang_nhap","Không đăng nhập được ("+(c||"lỗi")+"). Thử lại.");});
-  }
-  function dangXuat(){auth.signOut().then(function(){location.reload();});}
-
-  auth.onAuthStateChanged(function(u){
-    if(huyNghe){huyNghe();huyNghe=null;}
-    if(!u){if(daXong){location.reload();return;}moCong("dang_nhap");return;}
-    if(daXong&&u.uid!==ttin.uid){location.reload();return;}
-    ttin.uid=u.uid;ttin.email=String(u.email||"").toLowerCase();ttin.ten=u.displayName||ttin.email;
-    moCong("cho");
-    var laChuMail=!!CHU&&ttin.email===CHU&&u.emailVerified!==false;
-    /* lần cài đầu: chưa có chủ thì tài khoản có email chủ nhận quyền chủ (he_thong/chu + vai của mình, ghi cùng lúc) */
-    var buoc=fs.doc("he_thong/chu").get().then(function(s){
-      if(s.exists||!laChuMail)return;
-      var bt=fs.batch();bt.set(fs.doc("he_thong/chu"),{uid:u.uid,luc:Date.now()});bt.set(fs.doc("nguoi_dung/"+u.uid),{vai:"chu",ten:ttin.ten,email:ttin.email});return bt.commit();});
-    buoc.then(function(){
-      /* nghe vai của mình: được duyệt thì mở, bị gỡ thì đóng */
-      huyNghe=fs.doc("nguoi_dung/"+u.uid).onSnapshot(function(s){
-        var v=s.exists?String((s.data()||{}).vai||""):"";
-        if(!VAI_TEN[v]){
-          if(daXong){location.reload();return;}
-          if(!daXin){daXin=true;fs.doc("xin_vao/"+u.uid).set({ten:ttin.ten,email:ttin.email,luc:Date.now()}).catch(function(){daXin=false;});}
-          if(!dangCho){dangCho=true;moCong("cho_duyet",ttin.email);}return;}
-        if(daXong&&v!==ttin.vai){location.reload();return;}
-        ttin.vai=v;
-        if(!daXong){daXong=true;fs.doc("xin_vao/"+u.uid).delete().catch(function(){});
-          if(v==="chu")gieoDuLieu();
-          dongCong();themNutTaiKhoan();xong(ttin);}
-      },function(e){moCong("loi","Không đọc được quyền của tài khoản ("+((e&&e.code)||"lỗi")+"). Nếu vừa cài đặt, kiểm tra lại Rules của Firestore.");});
-    },function(e){moCong("loi","Không kiểm tra được quyền chủ shop ("+((e&&e.code)||"lỗi")+"). Kiểm tra email chủ trong trang và Rules của Firestore.");});
-  });
-
-  /* lần đầu chủ shop mở: tạo sẵn thông số nội bộ nếu chưa có (thông số chung do trang chính tự tạo) */
-  function gieoDuLieu(){
-    fs.doc("noi_bo/cau_hinh").get().then(function(s){if(!s.exists)return fs.doc("noi_bo/cau_hinh").set(NB_DAU);}).catch(function(){});
-  }
-
-  /* ---------- nút tài khoản + quản lý người dùng ---------- */
-  var veil=null;
-  function themNutTaiKhoan(){
-    var cd=$("btnCaiDat");if(!cd||$("btnTK"))return;
-    var b=el("button","ghost tk-nut");b.id="btnTK";b.type="button";b.setAttribute("aria-label","Tài khoản: "+ttin.email);
-    b.appendChild(el("span",null,(ttin.ten||ttin.email).split(" ").slice(-1)[0]));b.appendChild(el("i",null,VAI_TEN[ttin.vai]));
-    if(ttin.vai==="chu"){var so=el("i");so.id="tkCho";so.hidden=true;so.style.background="var(--bad)";so.style.color="#fff";b.appendChild(so);
-      fs.collection("xin_vao").onSnapshot(function(s){so.textContent=String(s.size);so.hidden=!s.size;if(veil&&veil.classList.contains("open"))veTK();},function(){});}
-    b.addEventListener("click",moTK);var br=document.querySelector(".bar>.brand");if(br)br.parentNode.insertBefore(b,br.nextSibling);else cd.parentNode.insertBefore(b,cd);
-  }
-  function moTK(){
-    if(!veil){veil=el("div","veil");veil.id="veilTK";veil.setAttribute("role","dialog");veil.setAttribute("aria-modal","true");veil.setAttribute("aria-labelledby","tkTitle");
-      var sh=el("div","sheet"),hd=el("header"),h2=el("h2",null,"Tài khoản");h2.id="tkTitle";hd.appendChild(h2);
-      var d=el("button","ghost","Đóng");d.type="button";d.addEventListener("click",dongTK);hd.appendChild(d);sh.appendChild(hd);
-      var bd=el("div","body");bd.id="tkBody";sh.appendChild(bd);veil.appendChild(sh);
-      veil.addEventListener("click",function(e){if(e.target===veil)dongTK();});
-      document.addEventListener("keydown",function(e){if(e.key==="Escape"&&veil.classList.contains("open"))dongTK();});
-      document.body.appendChild(veil);}
-    veTK();veil.classList.add("open");veil.style.display="flex";
-  }
-  function dongTK(){if(veil){veil.classList.remove("open");veil.style.display="";}}
-  function veTK(){
-    var bd=$("tkBody");bd.textContent="";
-    var me=el("div","note");me.appendChild(el("b",null,ttin.ten));me.appendChild(document.createElement("br"));me.appendChild(document.createTextNode(ttin.email+" · "+VAI_TEN[ttin.vai]));bd.appendChild(me);
-    var o=el("button","btn","Đăng xuất");o.type="button";o.addEventListener("click",dangXuat);bd.appendChild(o);
-    if(ttin.vai!=="chu"){bd.appendChild(el("p","hint","Chỉ chủ shop thêm, đổi vai hoặc gỡ người dùng."));return;}
-    var ns=el("div","ns");bd.appendChild(ns);
-    ns.appendChild(el("h3",null,"Đang chờ duyệt"));var dc=el("div","ns");ns.appendChild(dc);
-    ns.appendChild(el("h3",null,"Người dùng của shop"));var dn=el("div","ns");ns.appendChild(dn);
-    ns.appendChild(el("p","hint","Nhân viên: chốt đơn, bán kho, báo sự cố; không thấy tiền, vốn, lãi; không sửa giờ. Đồng chủ: thấy và ghi tiền như chủ, không sửa Cài đặt. Chuyển quyền chủ: người kia thành Chủ (sửa Cài đặt, duyệt người), bạn thành Đồng chủ. Người mới đăng nhập trang sẽ hiện ở mục Đang chờ duyệt."));
-    fs.collection("xin_vao").get().then(function(s){
-      if(!s.size){dc.appendChild(el("div","trong","Không có ai đang chờ."));return;}
-      s.docs.forEach(function(d){var x=d.data()||{},r=el("div","dong");r.appendChild(el("b",null,x.ten||"(không tên)"));r.appendChild(el("div","mail",(x.email||"")+(x.luc?" · "+gio(x.luc):"")));
-        var n=el("div","nut");
-        [["nhan_vien","Duyệt làm Nhân viên","chinh"],["dong_chu","Duyệt làm Đồng chủ",""]].forEach(function(v){var b=el("button",v[2]||null,v[1]);b.type="button";
-          b.addEventListener("click",function(){b.disabled=true;fs.doc("nguoi_dung/"+d.id).set({vai:v[0],ten:x.ten||"",email:x.email||"",duyet_luc:Date.now()})
-            .then(function(){return fs.doc("xin_vao/"+d.id).delete();}).then(veTK,function(){b.disabled=false;alert("Không duyệt được. Kiểm tra mạng.");});});n.appendChild(b);});
-        var t=el("button","xoa","Từ chối");t.type="button";t.addEventListener("click",function(){fs.doc("xin_vao/"+d.id).delete().then(veTK);});n.appendChild(t);
-        r.appendChild(n);dc.appendChild(r);});
-    },function(){dc.appendChild(el("div","trong","Không đọc được danh sách chờ."));});
-    fs.collection("nguoi_dung").get().then(function(s){
-      s.docs.forEach(function(d){var x=d.data()||{},r=el("div","dong");r.appendChild(el("b",null,(x.ten||"(không tên)")+(d.id===ttin.uid?" (bạn)":"")));r.appendChild(el("div","mail",(x.email||"")+" · "+(VAI_TEN[x.vai]||x.vai)));
-        if(d.id!==ttin.uid&&x.vai!=="chu"){var n=el("div","nut"),sel=el("select");sel.setAttribute("aria-label","Vai của "+(x.ten||x.email));
-          [["nhan_vien","Nhân viên"],["dong_chu","Đồng chủ"]].forEach(function(v){var op=el("option",null,v[1]);op.value=v[0];sel.appendChild(op);});sel.value=x.vai;
-          sel.addEventListener("change",function(){fs.doc("nguoi_dung/"+d.id).update({vai:sel.value}).then(veTK,function(){sel.value=x.vai;});});n.appendChild(sel);
-          var cq=el("button",null,"Chuyển quyền chủ");cq.type="button";var hoiCq=0;
-          cq.addEventListener("click",function(){hoiCq++;
-            if(hoiCq===1){cq.textContent="Chắc chưa? "+(x.ten||x.email)+" sẽ thành Chủ, bạn thành Đồng chủ";return;}
-            if(hoiCq===2){cq.textContent="Bấm lần cuối để chuyển";return;}
-            cq.disabled=true;var bt=fs.batch();bt.update(fs.doc("he_thong/chu"),{uid:d.id,luc:Date.now()});
-            bt.update(fs.doc("nguoi_dung/"+d.id),{vai:"chu"});bt.update(fs.doc("nguoi_dung/"+ttin.uid),{vai:"dong_chu"});
-            bt.commit().then(function(){location.reload();},function(){cq.disabled=false;alert("Không chuyển được. Kiểm tra mạng.");});});n.appendChild(cq);
-          var g=el("button","xoa","Gỡ khỏi shop");g.type="button";var hoi=false;
-          g.addEventListener("click",function(){if(!hoi){hoi=true;g.textContent="Bấm lần nữa để gỡ";return;}fs.doc("nguoi_dung/"+d.id).delete().then(veTK);});n.appendChild(g);r.appendChild(n);}
-        dn.appendChild(r);});
-    },function(){dn.appendChild(el("div","trong","Không đọc được danh sách người dùng."));});
-  }
-
-  /* ---------- thay window.claude ---------- */
-  var tenCache={};
-  var userApi={
-    isOwner:function(){return Promise.resolve(ttin.vai==="chu");},
-    canEdit:function(){return Promise.resolve(ttin.vai==="chu"||ttin.vai==="dong_chu");},
-    can:function(){return Promise.resolve(true);},
-    id:function(){return Promise.resolve(ttin.uid);},
-    me:function(){return Promise.resolve({id:ttin.uid,name:ttin.ten});},
-    profiles:function(ids){var out={},can=[];(ids||[]).forEach(function(id){if(tenCache[id]!=null)out[id]={name:tenCache[id]};else can.push(id);});
-      return Promise.all(can.map(function(id){return fs.doc("nguoi_dung/"+id).get().then(function(s){tenCache[id]=s.exists?String((s.data()||{}).ten||""):"";out[id]={name:tenCache[id]};},function(){out[id]={name:""};});})).then(function(){return out;});}
-  };
-  window.claude={use:function(ten){
-    if(ten==="db")return san.then(function(){return fs;});
-    if(ten==="user")return san.then(function(){return userApi;});
-    return san.then(function(){return null;}); /* không dùng kho ảnh: ảnh nén lưu thẳng trong Firestore */
-  }};
-})();
-
-</script>
 <script>
 "use strict";
 /* ===================== 1. THÔNG SỐ MẶC ĐỊNH (phần khách thấy) ===================== */
@@ -727,46 +425,13 @@ function chuanNB(d){if(!d||typeof d!=="object")return null;var r={},i,v;
   for(i=0;i<NB_KHOA.length;i++){v=d[NB_KHOA[i]];if(typeof v!=="number"||!isFinite(v)||v<0)return null;r[NB_KHOA[i]]=v;}
   return r;}
 
-/* ===================== 3b. GIỜ: hiện cả giờ TP.HCM và giờ Brussels; ngày, tuần, tháng tính theo giờ Việt Nam ===================== */
-var TZ_VN="Asia/Ho_Chi_Minh",TZ_BE="Europe/Brussels",_fmtTZ={};
-function phanGio(ms,tz){
-  var f=_fmtTZ[tz]||(_fmtTZ[tz]=new Intl.DateTimeFormat("en-GB",{timeZone:tz,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"}));
-  var o={};f.formatToParts(new Date(ms)).forEach(function(p){o[p.type]=p.value;});
-  return {y:+o.year,m:+o.month,d:+o.day,h:(+o.hour)%24,mi:+o.minute,s:+o.second};
-}
-function chu2(n){return (n<10?"0":"")+n;}
-function gioTZ(ms,tz){var p=phanGio(ms,tz);return chu2(p.h)+":"+chu2(p.mi)+" "+chu2(p.d)+"/"+chu2(p.m)+"/"+p.y;}
-/* "HCM 04:22 26/11/2026 · BRU 22:22 25/11/2026" */
-function haiGio(ms){return "HCM "+gioTZ(ms,TZ_VN)+" · BRU "+gioTZ(ms,TZ_BE);}
-function lechTZ(ms,tz){var p=phanGio(ms,tz);return Date.UTC(p.y,p.m-1,p.d,p.h,p.mi,p.s)-Math.floor(ms/1000)*1000;}
-/* giờ treo tường ở một múi giờ -> mốc thời gian */
-function tuGio(y,m,d,h,mi,tz){var g=Date.UTC(y,m-1,d,h,mi),t=g-lechTZ(g,tz);return g-lechTZ(t,tz);}
-function ngayKey(ms){var p=phanGio(ms,TZ_VN);return p.y+"-"+chu2(p.m)+"-"+chu2(p.d);}
-function ngayDep(key){var x=key.split("-");return x[2]+"/"+x[1]+"/"+x[0];}
-/* khoảng [a, b) của: hôm nay, tuần này (thứ Hai đến Chủ nhật), tháng này, tự chọn, tất cả; Việt Nam không đổi giờ nên một ngày luôn 24 giờ */
-function mocKy(ky,now,tu,den){
-  var p=phanGio(now,TZ_VN),a=tuGio(p.y,p.m,p.d,0,0,TZ_VN),N=864e5;
-  if(ky==="ngay")return [a,a+N];
-  if(ky==="tuan"){var lui=(new Date(Date.UTC(p.y,p.m-1,p.d)).getUTCDay()+6)%7;return [a-lui*N,a+(7-lui)*N];}
-  if(ky==="thang"){var ny=p.m===12?p.y+1:p.y,nm=p.m===12?1:p.m+1;return [tuGio(p.y,p.m,1,0,0,TZ_VN),tuGio(ny,nm,1,0,0,TZ_VN)];}
-  if(ky==="chon"&&/^\d{4}-\d{2}-\d{2}$/.test(tu||"")){
-    var x=tu.split("-"),y=(/^\d{4}-\d{2}-\d{2}$/.test(den||"")?den:tu).split("-");
-    var a2=tuGio(+x[0],+x[1],+x[2],0,0,TZ_VN),b2=tuGio(+y[0],+y[1],+y[2],0,0,TZ_VN)+N;
-    return b2>a2?[a2,b2]:[b2-N,a2+N];
-  }
-  return [0,Infinity];
-}
-/* ô datetime-local theo giờ Brussels <-> mốc thời gian */
-function oGioBE(ms){var p=phanGio(ms,TZ_BE);return p.y+"-"+chu2(p.m)+"-"+chu2(p.d)+"T"+chu2(p.h)+":"+chu2(p.mi);}
-function docGioBE(s){var m=/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s||"");if(!m)return null;return tuGio(+m[1],+m[2],+m[3],+m[4],+m[5],TZ_BE);}
-
 /* ===================== 4. GIAO DIỆN ===================== */
 if(typeof document!=="undefined")(function(){
   var $=function(id){return document.getElementById(id);};
-  var cfg=chuanHoa(docMay("baogia.cfg")),noiBo=null,laChu=false,suaDuoc=false,cheDo="may",DB=null;
+  var cfg=chuanHoa(docMay("baogia.cfg")),noiBo=null,laChu=false,suaDuoc=false,cheDo="may";
   var chon={nhom:"Tất cả",ten:"Áo polo",noi:"Web",trang:"zalando",sl:1},don=[],kq=null,daGo=false,tgRieng=null;
   var anNB=true; /* phần nội bộ ẩn sẵn; chỉ chủ shop bật lại được trong Cài đặt, bật máy nào hiện máy đó */
-  var daKetNoi=false,boQuaCu=false,daChuyen=false; /* đã biết máy này có nhận được số chung hay không; đã tắt lời nhắc tỷ giá cũ trong lần mở này */
+  var daKetNoi=false,boQuaCu=false; /* đã biết máy này có nhận được số chung hay không; đã tắt lời nhắc tỷ giá cũ trong lần mở này */
   /* cfg dùng để tính: giống cfg chung, chỉ thay tỷ giá khi máy này đang tự nhập */
   function C(){if(!tgRieng)return cfg;return {ty_gia:{vcb_ban:cfg.ty_gia.vcb_ban,dem:cfg.ty_gia.dem,tu_nhap:tgRieng,ngay:cfg.ty_gia.ngay},thong_so:cfg.thong_so,loai_hang:cfg.loai_hang};}
   function docMay(k){try{var s=localStorage.getItem(k);return s?JSON.parse(s):null;}catch(e){return null;}}
@@ -774,6 +439,11 @@ if(typeof document!=="undefined")(function(){
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e;}
   function bao(id,txt){var n=$(id);n.textContent=txt;clearTimeout(n._t);n._t=setTimeout(function(){n.textContent="";},2600);}
   anNB=docMay("baogia.anNB")!==false;
+  /* chế độ chủ shop: mở link có đuôi #chu-shop một lần trên máy của chủ shop. Không có mật khẩu nào trong code:
+     số vốn chỉ nằm trong bộ nhớ của chính máy đó, nên máy khác có bật chế độ này cũng không thấy gì. */
+  if(location.hash==="#chu-shop"){ghiMay("baogia.chu",true);try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}}
+  laChu=docMay("baogia.chu")===true;suaDuoc=laChu;
+  noiBo=laChu?chuanNB(docMay("baogia.noiBo")):null;
   function homNay(){var d=new Date();return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2);}
   (function(){var t=docMay("baogia.tgRieng");if(t&&t.ngay===homNay()&&typeof t.v==="number"&&t.v>=10000&&t.v<=100000)tgRieng=t.v;})();
   /* số ngày đã qua kể từ ngày đặt tỷ giá (chuỗi "dd/mm"); null nếu không đọc được */
@@ -904,12 +574,12 @@ if(typeof document!=="undefined")(function(){
       nbx.appendChild(el("span","num","Công nhân viên chỉ tính một lần cho cả đơn."));nbx.hidden=false;}
     return {dong:dong,ld:ld,giam:giam};
   }
-  function veLai(){veNoiMua();veNhom();veHang();tinh();veDon();if(QL&&QL.on)qlVe();}
+  function veLai(){veNoiMua();veNhom();veHang();tinh();veDon();}
   function mo(id){$(id).classList.add("open");document.body.style.overflow="hidden";}
   function dong(id){$(id).classList.remove("open");if(!document.querySelector(".veil.open"))document.body.style.overflow="";}
   /* ----- sao chép ----- */
-  function chep(text,idBao){
-    var xong=function(){bao(idBao,"Đã sao chép. Dán vào Zalo hoặc Messenger.");};
+  function chep(text,idBao,loi){
+    var xong=function(){bao(idBao,loi||"Đã sao chép. Dán vào Zalo hoặc Messenger.");};
     var tay=function(){$("chepO").value=text;mo("veilChep");var o=$("chepO");o.focus();try{o.setSelectionRange(0,text.length);}catch(e){o.select();}};
     var cu=function(){var ok=false,o=document.createElement("textarea");o.value=text;o.setAttribute("readonly","");o.style.position="fixed";o.style.top="0";o.style.left="0";o.style.opacity="0";o.style.fontSize="16px";
       document.body.appendChild(o);try{o.focus();o.setSelectionRange(0,text.length);ok=document.execCommand("copy");}catch(e){ok=false;}document.body.removeChild(o);if(ok)xong();else tay();};
@@ -952,11 +622,12 @@ if(typeof document!=="undefined")(function(){
       tgs.appendChild(el("p","num",cham(tyGiaBao(cfg))+" đ/€"+(cfg.ty_gia.ngay?" · cập nhật ngày "+cfg.ty_gia.ngay:"")));
       tgs.appendChild(el("p","hint","Khách hỏi tỷ giá nào thì báo số này. Muốn dùng tỷ giá khác cho riêng máy bạn thì gõ vào ô Tỷ giá tự nhập ở khung chọn món."));
       body.appendChild(tgs);$("cdLuu").hidden=true;$("cdBao").textContent="";mo("veilCD");$("cdBody").scrollTop=0;return;}
-    var ghi=cheDo==="dongbo"?(khoa?"Thông số do chủ shop đặt và tự đồng bộ về máy bạn. Bạn chỉ xem, không sửa được.":"Bạn đang sửa thông số chung. Bấm Lưu là mọi máy đang mở trang này nhận số mới.")
-      :"Thông số đang lưu riêng trên máy này. Muốn nhận số chủ shop cập nhật thì đăng nhập lại.";
+    var ghi=cheDo==="dongbo"?(khoa?"Thông số do chủ shop đặt và tự cập nhật về máy bạn mỗi khi mở trang. Bạn chỉ xem, không sửa được."
+        :"Bạn đang ở chế độ chủ shop. Sửa số rồi bấm Chép cấu hình: nội dung mới của file cau-hinh.json được chép sẵn. Dán đè vào file đó trên GitHub là mọi máy nhận số mới sau vài phút.")
+      :"Trang không đọc được file cau-hinh.json (thường do đang mở file trực tiếp trên máy), nên thông số lưu riêng trên máy này.";
     body.appendChild(el("p","note",ghi));
     body.appendChild(khoi("Tỷ giá","ty_gia",O_TG,cfg.ty_gia,khoa));
-    if(cheDo==="dongbo"&&!khoa){var tb=el("label","fr wide");tb.htmlFor="cd_thong_bao";tb.appendChild(el("span",null,"Lời nhắn hiện ở đầu trang cho mọi máy đã đăng nhập (để trống nếu không cần)"));
+    if(laChu){var tb=el("label","fr wide");tb.htmlFor="cd_thong_bao";tb.appendChild(el("span",null,"Lời nhắn hiện ở đầu trang của mọi máy (để trống nếu không cần)"));
       var ti=el("input");ti.type="text";ti.id="cd_thong_bao";ti.maxLength=200;ti.autocomplete="off";ti.placeholder="Ví dụ: Euro đang tăng, báo giá chỉ giữ trong 24 giờ";ti.value=cfg.thong_bao||"";tb.appendChild(ti);
       body.lastChild.appendChild(tb);}
     body.appendChild(el("p","hint","Mỗi sáng lấy số ở cột Bán, dòng EUR trong bảng tỷ giá Vietcombank. Tỷ giá báo = giá bán + đệm, làm tròn lên hàng trăm."));
@@ -971,15 +642,18 @@ if(typeof document!=="undefined")(function(){
       ck.appendChild(cb);ck.appendChild(document.createTextNode(t.ten+": giao thẳng kho Minh Quân ở Đức (không gửi kiện từ Brussels)"));st.appendChild(ck);});
     st.appendChild(el("p","hint","Món chưa đủ mức miễn ship: phí một đơn chia cho số món ở mục Công mua và cước, làm tròn lên 0,5 €. Nhiều món cùng trang trong một đơn mà cộng lại đủ mức thì miễn ship cho cả nhóm."));
     body.appendChild(st);
-    if(laChu&&cheDo==="dongbo"){body.appendChild(khoi("Nội bộ: vốn và chi phí (chỉ chủ shop thấy)","noi_bo",O_NB,noiBo,khoa));
-      body.appendChild(el("p","hint","Điền đủ các ô nội bộ thì khung giá hiện thêm vốn và lãi. Chỉ tài khoản chủ trang đọc được các số này, nhân viên không thấy."));
+    if(laChu){body.appendChild(khoi("Nội bộ: vốn và chi phí (chỉ lưu trên máy này)","noi_bo",O_NB,noiBo,false));
+      body.appendChild(el("p","hint","Các số này chỉ nằm trong bộ nhớ của máy này, không có trong code hay file cấu hình trên mạng, nên nhân viên không đọc được. Đổi máy hoặc xoá dữ liệu trình duyệt thì nhập lại."));
       var ck=el("label","ck"),cb=el("input");cb.type="checkbox";cb.id="cd_hienNB";cb.checked=!anNB;ck.appendChild(cb);
       ck.appendChild(document.createTextNode("Hiện vốn và lãi trên màn hình chính của máy này"));
-      cb.addEventListener("change",function(){anNB=!cb.checked;ghiMay("baogia.anNB",anNB);tinh();veDon();});body.appendChild(ck);}
+      cb.addEventListener("change",function(){anNB=!cb.checked;ghiMay("baogia.anNB",anNB);tinh();veDon();});body.appendChild(ck);
+      var th=el("button","btn","Thoát chế độ chủ shop trên máy này");th.type="button";
+      th.addEventListener("click",function(){ghiMay("baogia.chu",false);laChu=suaDuoc=false;noiBo=null;dong("veilCD");veLai();veTyGia();bao("bao1","Đã thoát. Số vốn vẫn giữ trên máy, mở lại link có #chu-shop là thấy lại.");});
+      body.appendChild(th);}
     var s=el("div","sec");s.id="cdHang";s.appendChild(el("h3",null,"Loại hàng và cân nặng (đã gồm bao bì)"));
     cfg.loai_hang.forEach(function(h){s.appendChild(dongHang(h,khoa));});body.appendChild(s);
     if(!khoa){var t=el("button","btn","Thêm một món mới");t.type="button";t.addEventListener("click",function(){var r=dongHang(H("","",0,false,false),false);s.appendChild(r);r.querySelector("input").focus();});body.appendChild(t);}
-    $("cdLuu").hidden=khoa;$("cdBao").textContent="";mo("veilCD");$("cdBody").scrollTop=0;
+    $("cdLuu").hidden=khoa;$("cdLuu").textContent=(cheDo==="dongbo"&&laChu)?"Chép cấu hình":"Lưu";$("cdBao").textContent="";mo("veilCD");$("cdBody").scrollTop=0;
   }
   function docO(i){var kieu=i.dataset.kieu,chu=i.value.trim(),v;
     if(kieu==="tien_trong")return {v:chu?docTien(chu):null,ok:true};
@@ -1009,35 +683,26 @@ if(typeof document!=="undefined")(function(){
     moi.loai_hang=ds;
     if($("cd_thong_bao"))moi.thong_bao=$("cd_thong_bao").value.replace(/\s+/g," ").trim().slice(0,200);
     var hn=new Date();if(moi.ty_gia.vcb_ban!==cfg.ty_gia.vcb_ban||moi.ty_gia.tu_nhap!==cfg.ty_gia.tu_nhap||!moi.ty_gia.ngay)moi.ty_gia.ngay=("0"+hn.getDate()).slice(-2)+"/"+("0"+(hn.getMonth()+1)).slice(-2);
-    var xong=function(){cfg=chuanHoa(moi);ghiMay("baogia.tgDaXem",tyGiaBao(cfg));if(cfg.thong_bao)ghiMay("baogia.tbDaXem",cfg.thong_bao);if(laChu&&cheDo==="dongbo")noiBo=nbCo?chuanNB(nb):noiBo;veLai();dong("veilCD");bao("bao1","Đã lưu cài đặt.");};
-    if(cheDo==="dongbo"&&DB){
-      $("cdLuu").disabled=true;$("cdBao").textContent="Đang lưu…";
-      var p=DB.doc("chung/cau_hinh").set(moi);
-      if(laChu&&nbCo)p=p.then(function(){return DB.doc("noi_bo/cau_hinh").set(nb);});
-      p.then(function(){$("cdLuu").disabled=false;xong();},function(){$("cdLuu").disabled=false;$("cdBao").textContent="Không lưu được. Kiểm tra mạng rồi bấm Lưu lại.";});
+    if(laChu){if(nbCo){ghiMay("baogia.noiBo",nb);noiBo=chuanNB(nb);}else{ghiMay("baogia.noiBo",null);noiBo=null;}}
+    var xong=function(loi){cfg=chuanHoa(moi);ghiMay("baogia.tgDaXem",tyGiaBao(cfg));if(cfg.thong_bao)ghiMay("baogia.tbDaXem",cfg.thong_bao);veLai();veTyGia();dong("veilCD");bao("bao1",loi||"Đã lưu cài đặt.");};
+    if(cheDo==="dongbo"&&laChu){
+      var json=JSON.stringify(chuanHoa(moi),null,2);xong("Đang chép…");
+      chep(json,"bao1","Đã chép cấu hình. Vào GitHub, mở cau-hinh.json, bấm bút chì, xoá hết rồi dán, bấm Commit changes.");
     }else{if(!ghiMay("baogia.cfg",moi))bao("bao1","Đã áp dụng, nhưng máy này không cho lưu lâu dài.");xong();}
   }
   /* ----- đồng bộ thông số chung ----- */
+  /* thông số chung nằm trong file cau-hinh.json để cạnh trang; mở lại tab là đọc lại */
+  var dangTai=false;
   function ketNoi(){
-    var cl=window.claude,roi=function(){if(!daKetNoi){daKetNoi=true;veTyGia();}};
-    if(!cl||typeof cl.use!=="function"){roi();return;}
-    setTimeout(roi,8000);
-    Promise.all([cl.use("db"),cl.use("user")]).then(function(r){
-      var db=r[0],user=r[1],q=Promise.resolve();
-      if(user)q=Promise.all([user.isOwner(),user.canEdit()]).then(function(x){laChu=!!x[0]||!!x[1];suaDuoc=!!x[0]; /* Editor = đồng chủ shop: thấy và làm mọi thứ như chủ */},function(){});
-      return q.then(function(){
-        if(!db){daKetNoi=true;veLai();return;}
-        DB=db;
-        db.doc("chung/cau_hinh").onSnapshot(function(s){cheDo="dongbo";daKetNoi=true;if(s.exists)cfg=chuanHoa(s.data());veLai();
-          /* thông số chung lưu trước 25/11 chưa có chính sách mới: khi chủ shop mở trang thì chuyển một lần cho mọi máy */
-          if(suaDuoc&&(!s.exists||!((s.data()||{}).phien_ban>=4))&&!daChuyen){daChuyen=true;
-            var m=saoChep(cfg);
-            db.doc("chung/cau_hinh").set(m).then(function(){bao("bao1","Đã lưu thông số chung cho mọi máy.");},function(){daChuyen=false;});}},function(){cheDo="may";DB=null;daKetNoi=true;veLai();});
-        if(laChu)db.doc("noi_bo/cau_hinh").onSnapshot(function(s){noiBo=s.exists?chuanNB(s.data()):null;tinh();veDon();qlVe();},function(){});
-        qlBatDau(db,user);
-      });
-    },roi);
+    if(dangTai)return;dangTai=true;
+    var xong=function(d){dangTai=false;daKetNoi=true;
+      if(d&&typeof d==="object"){var moi=chuanHoa(d);if(cheDo!=="dongbo"||JSON.stringify(moi)!==JSON.stringify(cfg)){cheDo="dongbo";cfg=moi;veLai();}}
+      else if(cheDo!=="dongbo"){cheDo="may";veLai();}
+      veTyGia();};
+    if(location.protocol==="file:"||typeof fetch!=="function"){xong(null);return;}
+    fetch("cau-hinh.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.ok?r.json():null;}).then(xong,function(){xong(null);});
   }
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")ketNoi();});
   /* ----- gắn sự kiện ----- */
   $("tim").addEventListener("input",veHang);
   $("gia").addEventListener("input",function(){daGo=true;tinh();});
@@ -1076,678 +741,12 @@ if(typeof document!=="undefined")(function(){
   $("cdDong").addEventListener("click",function(){dong("veilCD");});
   $("cdLuu").addEventListener("click",luuCaiDat);
   $("chepDong").addEventListener("click",function(){dong("veilChep");});
-  document.addEventListener("keydown",function(e){if(e.key==="Escape"){dong("veilCD");dong("veilChep");dong("veilQL");}});
-  $("qlDong").addEventListener("click",function(){dong("veilQL");});
-  $("qlLuu").addEventListener("click",function(){if(luuQL)luuQL();});
-  $("btnChot").addEventListener("click",function(){moChot();});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){dong("veilCD");dong("veilChep");}});
   $("btnThemNho").addEventListener("click",function(){$("btnThem").click();});
-  ["veilCD","veilChep","veilQL"].forEach(function(id){$(id).addEventListener("click",function(e){if(e.target===this)dong(id);});});
-  /* ===================== 5. QUẢN LÝ SHOP: kho hàng nhập sẵn, đơn order, đợt gửi, sổ tiền, nhật ký =====================
-     Quyền: chủ shop và người có quyền Edit làm được mọi thứ; nhân viên (Viewer được mời đích danh, link không công khai) xem kho, bán, báo mất,
-     thêm ảnh và ghi chú, chốt đơn, đổi trạng thái, báo sự cố. Mọi việc dính tới tiền, giá vốn, lãi và sửa giờ chỉ chủ shop. */
-  var QL={db:null,user:null,uid:null,chu:false,ghi:false,anh:null,on:false,cham:false,
-    kho:[],khoVon:{},don:[],donVon:{},dot:[],phieu:[],so:[],nk:[],nkMinh:{},ten:{},tenCho:{},anhTam:{},anhDang:{},
-    loiTai:{},loaiLoc:"",tab:"baogia",ky:"tuan",tu:"",den:"",dotLoc:"",tim:"",hetHang:false,xoaCho:"",nkHang:Promise.resolve()};
-  var NHOM_THU=["Khách đặt cọc","Khách trả tiền order","Bán hàng có sẵn","Ship nội địa khách trả","Hãng đền","Thu khác"];
-  var NHOM_CHI=["Mua hàng order","Mua hàng nhập sẵn","Ship web","Cước Minh Quân","Kiện Brussels → Đức","Đi lại","Công nhân viên","Đóng gói","Quảng cáo","Ship nội địa Việt Nam","Hoàn tiền khách","Mua lại hàng","Chi khác"];
-  var TT_DON={xu_ly:"Đang xử lý",da_giao:"Đã giao",su_co:"Sự cố",huy:"Đã huỷ"};
-  var KIEU_PHIEU={nhap:"Nhập kho",ban:"Bán",mat:"Mất/hư",tra:"Khách trả lại",kiem:"Đếm lại tồn"};
-  var DEN_KG_KHONG_BH=20; /* Minh Quân: hàng không bảo hiểm đền tối đa 20 €/kg */
-
-  function so0(x){x=+x;return isFinite(x)?x:0;}
-  function sach(s,n){return String(s==null?"":s).replace(/\s+/g," ").trim().slice(0,n||120);}
-  function anToan(id){return String(id||"").replace(/[^A-Za-z0-9_\-.~:@+]/g,"_").slice(0,120)||"x";}
-  function docArr(docs){return docs.map(function(d){var o=d.data()||{},x={},k;for(k in o)x[k]=o[k];x.id=d.id;return x;});}
-  function tenNguoi(id){
-    if(!id)return "Không rõ";if(id===QL.uid)return "Bạn";if(QL.ten[id])return QL.ten[id];
-    if(QL.user&&QL.user.profiles&&!QL.tenCho[id]){QL.tenCho[id]=1;
-      QL.user.profiles([id]).then(function(ps){QL.ten[id]=(ps&&ps[id]&&ps[id].name)||"Nhân viên";qlVe();},function(){QL.ten[id]="Nhân viên";});}
-    return "…";
-  }
-  /* ảnh: người có quyền Edit tải lên kho ảnh của Claude (id thường); nhân viên Viewer không được, nên ảnh nén nhỏ lưu trong dữ liệu web (id "db:...") */
-  var ANH_CHO="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
-  function anhUrl(id){if(QL.anhTam[id])return QL.anhTam[id];if(String(id).indexOf("db:")===0){taiAnhDb(id);return ANH_CHO;}return "/_blob/"+encodeURIComponent(id);}
-  function datAnh(im,id){im.setAttribute("data-anh",String(id));im.src=anhUrl(id);}
-  function taiAnhDb(id){if(QL.anhDang[id]||!QL.db)return;QL.anhDang[id]=true;
-    QL.db.doc("anh/"+String(id).slice(3)).get().then(function(s){var d=s&&s.exists?(s.data()||{}).d:"";if(typeof d!=="string"||d.indexOf("data:image/")!==0)return;
-      QL.anhTam[id]=d;document.querySelectorAll("img[data-anh]").forEach(function(im){if(im.getAttribute("data-anh")===String(id))im.src=d;});},function(){QL.anhDang[id]=false;});}
-  function luuAnh(f){
-    if(QL.anh)return nenAnh(f).then(function(b){return QL.anh.upload(b);}).then(function(r){if(r.url)QL.anhTam[r.id]=r.url;return r.id;});
-    return nenAnhNho(f).then(function(d){if(!d)throw new Error("anh");var ref=QL.db.collection("anh").doc(),id="db:"+ref.id;
-      return ref.set({d:d,ai:QL.uid||"",luc:Date.now()}).then(function(){QL.anhTam[id]=d;return id;});});
-  }
-  function loiLuu(e){var c=e&&e.code;
-    if(c==="quota_exceeded"||c==="resource-exhausted")return "Đã chạm giới hạn miễn phí của Firebase hôm nay hoặc bấm quá nhanh. Đợi một lát rồi thử lại.";
-    if(c==="permission-denied")return QL.chu?"Máy chủ từ chối: tài khoản của bạn không có quyền làm việc này.":"Bạn không có quyền làm việc này. Việc dính tới tiền, giá vốn và sửa giờ chỉ chủ shop làm.";
-    if(c==="unavailable")return "Mất mạng. Kiểm tra mạng rồi thử lại.";
-    if((c==="invalid_argument"||c==="permission_denied")&&!QL.chu)return "Tài khoản của bạn chưa được quyền ghi. Nhờ chủ shop thêm email của bạn vào link.";
-    if(c==="resource_exhausted")return "Bấm hơi nhanh, đợi vài giây rồi thử lại.";
-    return "Không lưu được. Kiểm tra mạng rồi thử lại.";}
-  function trongKy(ms){var k=mocKy(QL.ky,Date.now(),QL.tu,QL.den);return ms>=k[0]&&ms<k[1];}
-  function nutNho(txt,fn,cls){var b=el("button",cls||null,txt);b.type="button";b.addEventListener("click",fn);return b;}
-  function dongGio(ms,ai){var g=el("div","gio",haiGio(ms));if(ai!==undefined)g.textContent+=" · "+tenNguoi(ai);return g;}
-
-  /* ---------- nhật ký: mỗi người mỗi ngày một tài liệu, thêm dòng vào cuối ---------- */
-  function ghiNK(viec){
-    if(!QL.db||!QL.uid)return;var t=Date.now(),k=ngayKey(t)+"_"+anToan(QL.uid),cu=null,i;
-    for(i=0;i<QL.nk.length;i++)if(QL.nk[i].id===k){cu=QL.nk[i];break;}
-    var goc=QL.nkMinh[k]||(cu&&Array.isArray(cu.ds)?cu.ds:[]),ds=goc.concat([{t:t,v:sach(viec,200)}]).slice(-400);
-    QL.nkMinh[k]=ds;
-    QL.nkHang=QL.nkHang.then(function(){return QL.db.doc("nhat_ky/"+k).set({ngay:ngayKey(t),ai:QL.uid,ds:QL.nkMinh[k]});}).catch(function(){});
-  }
-
-  /* ---------- khởi động: gọi sau khi biết ai đang xem ---------- */
-  function nghe(path,dich,thuTu,gioiHan){
-    var q=QL.db.collection(path);if(thuTu)q=q.orderBy(thuTu,"desc");q=q.limit(Math.min(gioiHan||1000,1000)); /* máy chủ chỉ nhận tối đa 1000 */
-    var hen=setTimeout(function(){QL.cham=true;qlVe();},10000);
-    q.onSnapshot(function(s){clearTimeout(hen);if(!s.metadata||!s.metadata.fromCache)QL.cham=false;delete QL.loiTai[path];dich(docArr(s.docs));qlVe();},function(e){clearTimeout(hen);QL.loiTai[path]=(e&&(e.code||e.message))||"lỗi";try{console.error("Không tải được "+path,e);}catch(x){}qlVe();});
-  }
-  function qlBatDau(db,user){
-    if(QL.on||!db||typeof db.collection!=="function")return;QL.db=db;QL.user=user;QL.chu=laChu;
-    var hoi=user?Promise.all([user.can?Promise.resolve(user.can("data.write")).catch(function(){return null;}):null,user.id?Promise.resolve(user.id()).catch(function(){return null;}):null]):Promise.resolve([null,null]);
-    hoi.then(function(x){
-      var w=x[0];QL.uid=x[1]||null;
-      if(!QL.chu&&!QL.uid)return; /* chưa đăng nhập: chỉ có phần báo giá. Link chỉ mở cho người được mời, nên ai đã đăng nhập vào được đều là người của shop */
-      QL.ghi=true;QL.on=true;
-      try{window.claude.use("assets").then(function(a){QL.anh=a||null;qlVe();},function(){});}catch(e){}
-      nghe("kho",function(a){QL.kho=a;});
-      nghe("phieu",function(a){QL.phieu=a;},"luc",1000);
-      nghe("don",function(a){QL.don=a;},"luc",600);
-      nghe("dot",function(a){QL.dot=a;},"luc",200);
-      nghe("nhat_ky",function(a){QL.nk=a;},"ngay",150);
-      if(QL.chu){
-        nghe("kho_von",function(a){var m={};a.forEach(function(x){m[x.id]=x;});QL.khoVon=m;});
-        nghe("don_von",function(a){var m={};a.forEach(function(x){m[x.id]=x;});QL.donVon=m;});
-        nghe("so",function(a){QL.so=a;},"luc",1000);
-      }
-      $("tabs").hidden=false;$("btnChot").hidden=false;veTabs();
-    });
-  }
-
-  /* ---------- thanh chuyển mục ---------- */
-  var TABS=[["kho","Kho"],["baogia","Báo giá"],["don","Đơn"],["so","Sổ tiền"],["nk","Nhật ký"]];
-  function soChoXacNhan(){var n=0;QL.phieu.forEach(function(p){if(p.kieu==="ban"&&p.cho===true)n++;});return n;}
-  function veTabs(){
-    var box=$("tabs");box.textContent="";
-    TABS.forEach(function(t){if(t[0]==="so"&&!QL.chu)return;
-      var b=el("button",null,t[1]);b.type="button";b.setAttribute("aria-pressed",QL.tab===t[0]?"true":"false");
-      if(t[0]==="so"){var n=soChoXacNhan();if(n){var s=el("span","so",String(n));s.setAttribute("aria-label",n+" khoản chờ xác nhận");b.appendChild(s);}}
-      b.addEventListener("click",function(){moTab(t[0]);});box.appendChild(b);});
-  }
-  function moTab(t){
-    QL.tab=t;veTabs();var bg=t==="baogia";
-    $("vBaoGia").hidden=!bg;$("vQL").hidden=bg;document.body.classList.toggle("ql-mode",!bg);
-    if(!bg){dungKhung();qlVe();}
-    window.scrollTo(0,0);
-  }
-  function qlVe(){
-    if(!QL.on)return;veTabs();
-    if(QL.tab==="kho")veKho();else if(QL.tab==="don")veDonQL();else if(QL.tab==="so")veSo();else if(QL.tab==="nk")veNK();
-  }
-
-  /* ---------- khung cố định của mỗi mục: thanh công cụ + vùng nội dung (thanh công cụ không vẽ lại, để ô tìm không mất chữ) ---------- */
-  function dungKhung(){
-    var v=$("vQL");v.textContent="";
-    var tb=el("div","qlbar");tb.id="qlTool";v.appendChild(tb);
-    var ch=el("p","note");ch.id="qlCham";ch.hidden=true;ch.textContent="Đang tải dữ liệu… Nếu lâu quá, kiểm tra mạng.";v.appendChild(ch);
-    if(QL.tab==="kho"){
-      var tim=el("input");tim.type="search";tim.placeholder="Tìm hàng: tên, size, màu…";tim.setAttribute("aria-label","Tìm hàng trong kho");tim.value=QL.tim;
-      tim.addEventListener("input",function(){QL.tim=tim.value;veKho();});tb.appendChild(tim);
-      var ck=el("label","ck"),cb=el("input");cb.type="checkbox";cb.checked=QL.hetHang;cb.addEventListener("change",function(){QL.hetHang=cb.checked;veKho();});
-      ck.appendChild(cb);ck.appendChild(document.createTextNode("Hiện cả hàng đã hết"));tb.appendChild(ck);
-      if(QL.chu)tb.appendChild(nutNho("+ Nhập hàng",function(){moNhap(null);},"chinh"));
-    }else{
-      tb.appendChild(thanhKy());
-      if(QL.tab==="don"&&QL.chu)tb.appendChild(nutNho("+ Tạo đợt gửi",moTaoDot,""));
-      if(QL.tab==="so")tb.appendChild(nutNho("+ Ghi khoản thu/chi",function(){moTien({});},"chinh"));
-    }
-    var noi=el("div","qlnoi");noi.id="qlNoi";v.appendChild(noi);
-  }
-  function thanhKy(){
-    var w=el("div","kyw"),c=el("div","chips");
-    [["ngay","Hôm nay"],["tuan","Tuần này"],["thang","Tháng này"],["tat","Tất cả"],["chon","Chọn ngày"]].forEach(function(k){
-      var b=el("button","chip",k[1]);b.type="button";b.setAttribute("aria-pressed",QL.ky===k[0]?"true":"false");
-      b.addEventListener("click",function(){QL.ky=k[0];c.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});r.hidden=QL.ky!=="chon";qlVe();});c.appendChild(b);});
-    w.appendChild(c);
-    var r=el("div","kyr");r.hidden=QL.ky!=="chon";
-    [["tu","Từ ngày"],["den","Đến ngày"]].forEach(function(f){var l=el("label","qlf",f[1]),i=el("input");i.type="date";i.value=QL[f[0]];
-      i.addEventListener("change",function(){QL[f[0]]=i.value;qlVe();});l.appendChild(i);r.appendChild(l);});
-    w.appendChild(r);
-    var g=el("p","hint","Ngày, tuần, tháng tính theo giờ Việt Nam. Tuần tính từ thứ Hai đến Chủ nhật.");w.appendChild(g);
-    return w;
-  }
-  function noiDung(){var n=$("qlNoi");n.textContent="";var c=$("qlCham");if(c)c.hidden=!QL.cham;
-    var ten={kho:"Kho",kho_von:"vốn kho",don:"Đơn",don_von:"vốn đơn",dot:"Đợt gửi",phieu:"phiếu kho",so:"Sổ tiền",nhat_ky:"Nhật ký"},hong=Object.keys(QL.loiTai);
-    if(QL.tin){var tn=el("div","kc tin",QL.tin);tn.setAttribute("role","status");n.appendChild(tn);}
-    if(hong.length)n.appendChild(el("div","kc loi","Không tải được: "+hong.map(function(k){return ten[k]||k;}).join(", ")+". Tải lại trang; vẫn bị thì chụp màn hình gửi chủ shop."));
-    return n;}
-  function kpi(nhan,giaTri,cls){var k=el("div","kpi");k.appendChild(el("small",null,nhan));k.appendChild(el("b",cls||null,giaTri));return k;}
-
-  /* ===================== KHO HÀNG NHẬP SẴN ===================== */
-  function khoTheoId(id){for(var i=0;i<QL.kho.length;i++)if(QL.kho[i].id===id)return QL.kho[i];return null;}
-  function loaiHang(ten){for(var i=0;i<cfg.loai_hang.length;i++)if(cfg.loai_hang[i].ten===ten)return cfg.loai_hang[i];return cfg.loai_hang[0];}
-  function veKho(){
-    var n=noiDung(),q=boDau(QL.tim||""),ds=QL.kho.slice().sort(function(a,b){return (so0(b.sl)>0)-(so0(a.sl)>0)||String(a.ten).localeCompare(String(b.ten),"vi");});
-    if(QL.chu){var tong=0,gt=0,ma=0;QL.kho.forEach(function(k){var s=so0(k.sl);if(s>0){ma++;tong+=s;var v=QL.khoVon[k.id];if(v)gt+=s*so0(v.von);}});
-      var kp=el("div","kpis");kp.appendChild(kpi("Mặt hàng còn",String(ma)));kp.appendChild(kpi("Tổng số cái",String(tong)));kp.appendChild(kpi("Tiền vốn đang nằm trong kho",fmtVnd(gt)));n.appendChild(kp);}
-    var list=el("div","ds hai"),dem=0;
-    ds.forEach(function(k){
-      if(!QL.hetHang&&so0(k.sl)<=0)return;
-      if(q&&boDau([k.ten,k.size,k.mau,k.ghi_chu].join(" ")).indexOf(q)<0)return;
-      list.appendChild(theKho(k));dem++;});
-    if(!dem)list.appendChild(el("div","empty",QL.kho.length?"Không có món nào khớp.":(QL.chu?"Kho đang trống. Bấm “+ Nhập hàng” khi bạn mua deal về.":"Kho đang trống.")));
-    n.appendChild(list);
-  }
-  function theKho(k){
-    var c=el("article","kc"),dau=el("div","dau"),sl=so0(k.sl);
-    if(Array.isArray(k.anh)&&k.anh.length){var im=el("img","anh");datAnh(im,k.anh[0]);im.alt=k.ten;im.loading="lazy";dau.appendChild(im);}
-    else dau.appendChild(el("div","anh","Chưa có ảnh"));
-    var tt=el("div");tt.appendChild(el("div","ten",k.ten||"Không tên"));
-    tt.appendChild(el("div","phu",[k.size?"Size "+k.size:"",k.mau?"Màu "+k.mau:""].filter(Boolean).join(" · ")||"Chưa ghi size, màu"));
-    if(so0(k.gia_ban)>0)tt.appendChild(el("div","tien",fmtVnd(k.gia_ban)));else tt.appendChild(el("div","phu","Chưa đặt giá bán"));
-    dau.appendChild(tt);
-    dau.appendChild(el("span","badge "+(sl<=0?"do":"xanh"),sl<=0?"Hết hàng":"Còn "+sl));
-    c.appendChild(dau);
-    if(k.ghi_chu)c.appendChild(el("p","ghichu","Ghi chú: "+k.ghi_chu));
-    var ngay=so0(k.ngay_nhap),tuoi=ngay?Math.floor((Date.now()-ngay)/864e5):0;
-    var g=el("div","gio","Nhập lần đầu: "+(ngay?haiGio(ngay):"không rõ"));c.appendChild(g);
-    if(sl>0&&tuoi>60)c.appendChild(el("span","badge vang","Tồn "+tuoi+" ngày: nên xả hàng"));
-    if(QL.chu){var v=QL.khoVon[k.id];
-      if(v){var t="Vốn "+fmtVnd(v.von)+"/cái";if(so0(k.gia_ban)>0)t+=" · lãi "+fmtVnd(so0(k.gia_ban)-so0(v.von))+"/cái";if(v.gia_mua_eur)t+=" · mua "+fmtEur(v.gia_mua_eur);c.appendChild(el("div","nb",t));}
-      else c.appendChild(el("div","nb","Chưa có giá vốn: bấm Sửa để nhập."));}
-    var nut=el("div","nut");
-    if(sl>0)nut.appendChild(nutNho("Bán",function(){moBan(k);},"chinh"));
-    if(sl>0)nut.appendChild(nutNho("Mất/hư",function(){moXuat(k,"mat");}));
-    nut.appendChild(nutNho("Khách trả lại",function(){moXuat(k,"tra");}));
-    nut.appendChild(nutNho("Ảnh, ghi chú",function(){moAnhGhiChu(k);}));
-    nut.appendChild(nutNho("Lịch sử",function(){moLichSu(k);}));
-    if(QL.chu)nut.appendChild(nutNho("Sửa",function(){moNhap(k);}));
-    c.appendChild(nut);return c;
-  }
-
-  /* ---------- tấm nổi dùng chung ---------- */
-  var luuQL=null;
-  function moTam(tieuDe,ve,luu,nhanLuu){
-    $("qlTitle").textContent=tieuDe;var b=$("qlBody");b.textContent="";ve(b);
-    luuQL=luu;$("qlLuu").hidden=!luu;$("qlLuu").textContent=nhanLuu||"Lưu";$("qlLuu").disabled=false;$("qlBao").textContent="";$("qlBao").className="toast";
-    mo("veilQL");b.scrollTop=0;
-  }
-  function baoNhanh(txt){QL.tin=txt;qlVe();clearTimeout(QL.tinHen);QL.tinHen=setTimeout(function(){QL.tin="";qlVe();},9000);}
-  function baoTam(txt,loi){var p=$("qlBao");p.textContent=txt;p.className="toast"+(loi?" err":"");}
-  function oNhap(nhan,kieu,giaTri,thuoc){var l=el("label","qlf",nhan),i=el(kieu==="textarea"?"textarea":(kieu==="select"?"select":"input"));
-    if(kieu!=="textarea"&&kieu!=="select")i.type=kieu||"text";
-    if(thuoc)for(var k in thuoc)i[k]=thuoc[k];if(giaTri!=null&&kieu!=="select")i.value=giaTri;l.appendChild(i);return {l:l,i:i};}
-  function oChon(nhan,ds,giaTri){var o=oNhap(nhan,"select");ds.forEach(function(x){var op=el("option",null,x[1]);op.value=x[0];o.i.appendChild(op);});o.i.value=giaTri==null?(ds[0]?ds[0][0]:""):giaTri;return o;}
-  function oGio(nhan,ms){var o=oNhap(nhan,"datetime-local",oGioBE(ms));var g=el("div","gio",haiGio(ms));o.l.appendChild(g);
-    o.i.addEventListener("input",function(){var t=docGioBE(o.i.value);g.textContent=t?haiGio(t):"Ngày giờ chưa đúng";});o.l.appendChild(el("span","hint","Nhập theo giờ Brussels, dòng dưới hiện cả giờ Việt Nam."));return o;}
-  /* ảnh: thu nhỏ còn cạnh dài 1280 px rồi tải lên */
-  function nenAnh(file){return new Promise(function(ok){
-    if(!file||!/^image\//.test(file.type)||file.type==="image/svg+xml"){ok(file);return;}
-    var u=URL.createObjectURL(file),im=new Image();
-    im.onload=function(){var r=Math.min(1,1280/Math.max(im.width,im.height)),cv=document.createElement("canvas");cv.width=Math.round(im.width*r);cv.height=Math.round(im.height*r);
-      cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);URL.revokeObjectURL(u);cv.toBlob(function(b){ok(b||file);},"image/jpeg",0.82);};
-    im.onerror=function(){URL.revokeObjectURL(u);ok(file);};im.src=u;});}
-  function nenAnhNho(file){return new Promise(function(ok){
-    if(!file||!/^image\//.test(file.type)||file.type==="image/svg+xml"){ok(null);return;}
-    var u=URL.createObjectURL(file),im=new Image();
-    im.onload=function(){URL.revokeObjectURL(u);function lam(canh,cl){var r=Math.min(1,canh/Math.max(im.width,im.height)),cv=document.createElement("canvas");cv.width=Math.round(im.width*r);cv.height=Math.round(im.height*r);
-        cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);return cv.toDataURL("image/jpeg",cl);}
-      var d=lam(1000,0.72);if(d.length>450000)d=lam(760,0.62);if(d.length>450000)d=lam(560,0.55);ok(d);};
-    im.onerror=function(){URL.revokeObjectURL(u);ok(null);};im.src=u;});}
-  function oAnh(dsGoc,choXoa){
-    var w=el("div","qlf","Ảnh minh hoạ"),hang=el("div","anhs"),ds=(dsGoc||[]).slice(),dangTai=0;w.appendChild(hang);
-    function ve(){hang.textContent="";ds.forEach(function(id,i){var f=el("figure"),im=el("img");datAnh(im,id);im.alt="Ảnh "+(i+1);f.appendChild(im);
-      if(choXoa){var x=el("button",null,"×");x.type="button";x.setAttribute("aria-label","Bỏ ảnh "+(i+1));x.addEventListener("click",function(){ds.splice(i,1);ve();});f.appendChild(x);}hang.appendChild(f);});}
-    ve();
-    if(QL.anh||QL.db){var inp=el("input");inp.type="file";inp.accept="image/*";inp.multiple=true;inp.setAttribute("aria-label","Chọn ảnh");
-      inp.addEventListener("change",function(){var fs=[].slice.call(inp.files||[],0,6);inp.value="";
-        fs.forEach(function(f){dangTai++;baoTam("Đang tải ảnh lên…");
-          luuAnh(f).then(function(id){ds.push(id);ve();},function(e){baoTam(e&&e.code?loiLuu(e):"Không tải được ảnh. Chọn file ảnh (jpg, png, heic đã đổi sang jpg).",true);})
-          .then(function(){dangTai--;if(!dangTai)baoTam("");});});});
-      w.appendChild(inp);w.appendChild(el("span","hint","Chụp bằng điện thoại hoặc chọn ảnh có sẵn. Ảnh lớn được thu nhỏ trước khi tải."));}
-    else w.appendChild(el("span","hint","Máy này chưa tải ảnh lên được."));
-    return {l:w,lay:function(){return ds.slice(0,8);},dangTai:function(){return dangTai>0;}};
-  }
-
-  /* ---------- nhập hàng (chủ) / sửa hàng ---------- */
-  function vonMotCai(loai,giaMua,trang){
-    if(!noiBo||!(giaMua>0))return null;var o={gia:giaMua,sl:1,noi:trang==="cua_hang"?"Cửa hàng":"Web",trang:(trang&&trang!=="cua_hang"&&trang!=="web")?trang:""};
-    var r=tinhGia(C(),noiBo,loaiHang(loai),o);return r.von;}
-  function giaOrder(loai,gia,trang){if(!(gia>0))return null;var o={gia:gia,sl:1,noi:trang==="cua_hang"?"Cửa hàng":"Web",trang:(trang&&trang!=="cua_hang"&&trang!=="web")?trang:""};return tinhGia(C(),null,loaiHang(loai),o).giaBao;}
-  function moNhap(k){
-    var sua=!!k,v=sua?(QL.khoVon[k.id]||{}):{},f={};
-    moTam(sua?"Sửa mặt hàng":"Nhập hàng vào kho",function(b){
-      if(!sua)b.appendChild(el("p","note","Nhập hàng bạn mua sẵn khi có deal. Trùng tên, size và màu với món đang có thì cộng thêm số lượng vào món đó."));
-      var g1=el("div","f2");
-      f.ten=oNhap("Tên hàng","text",sua?k.ten:"",{maxLength:80,placeholder:"Ví dụ: Áo polo Lacoste"});g1.appendChild(f.ten.l);
-      f.loai=oChon("Loại (để tính cân nặng)",cfg.loai_hang.map(function(h){return [h.ten,h.ten+" · "+fmtKg(h.can)];}),sua?k.loai:"Áo polo");g1.appendChild(f.loai.l);
-      f.size=oNhap("Size","text",sua?k.size:"",{maxLength:20,placeholder:"M, 42, 50ml…"});g1.appendChild(f.size.l);
-      f.mau=oNhap("Màu","text",sua?k.mau:"",{maxLength:30,placeholder:"Đen, trắng…"});g1.appendChild(f.mau.l);
-      f.sl=oNhap(sua?"Số lượng đang còn (đếm lại)":"Số lượng nhập","text",sua?String(so0(k.sl)):"1",{inputMode:"numeric"});g1.appendChild(f.sl.l);
-      f.gia=oNhap("Giá mua mỗi cái (€)","text",v.gia_mua_eur?gon(v.gia_mua_eur,2):"",{inputMode:"decimal"});g1.appendChild(f.gia.l);
-      var tr=(cfg.trang_web||[]).map(function(t){return ["t:"+t.ma,t.ten];});tr.push(["web","Web khác"]);tr.push(["cua_hang","Cửa hàng ở Bỉ"]);
-      f.trang=oChon("Mua ở đâu",tr,v.trang||"t:zalando");g1.appendChild(f.trang.l);
-      f.goc=oNhap("Giá gốc trước khi giảm (€, nếu có)","text",v.gia_goc_eur?gon(v.gia_goc_eur,2):"",{inputMode:"decimal"});g1.appendChild(f.goc.l);
-      f.ban=oNhap("Giá bán cho khách mỗi cái (đ)","text",so0(k&&k.gia_ban)?cham(k.gia_ban):"",{inputMode:"numeric"});g1.appendChild(f.ban.l);
-      f.von=oNhap("Giá vốn mỗi cái (đ)","text",v.von?cham(Math.round(v.von)):"",{inputMode:"numeric",placeholder:"Để trống: tự tính"});g1.appendChild(f.von.l);
-      b.appendChild(g1);
-      var goiY=el("div","note");goiY.setAttribute("aria-live","polite");b.appendChild(goiY);
-      function tinhLai(){var loai=f.loai.i.value,gm=docSo(f.gia.i.value),gg=docSo(f.goc.i.value),trg=f.trang.i.value.replace(/^t:/,"");
-        var von=docTien(f.von.i.value)||vonMotCai(loai,gm,trg),san=giaOrder(loai,gm,trg),tran=giaOrder(loai,gg,trg),ban=docTien(f.ban.i.value);
-        goiY.textContent="";
-        if(von)goiY.appendChild(el("div",null,"Giá vốn ước tính: "+fmtVnd(von)+"/cái"+(noiBo?"":" (chưa có thông số nội bộ, nhập tay ở ô Giá vốn)")));
-        else if(!noiBo)goiY.appendChild(el("div",null,"Chưa có thông số vốn trong Cài đặt nên chưa tự tính được giá vốn. Bạn nhập tay ở ô Giá vốn."));
-        if(san){var x=el("div");x.appendChild(document.createTextNode("Gợi ý giá bán: sàn "+fmtVnd(san)+" (khách tự order theo giá deal)"));
-          if(tran)x.appendChild(document.createTextNode(", trần "+fmtVnd(tran)+" (order theo giá gốc)"));goiY.appendChild(x);
-          var nb=el("div","nut");nb.appendChild(nutNho("Dùng giá sàn",function(){f.ban.i.value=cham(san);tinhLai();}));
-          if(tran){var giua=Math.round((san+tran)/2/10000)*10000;nb.appendChild(nutNho("Giữa: "+fmtVnd(giua),function(){f.ban.i.value=cham(giua);tinhLai();}));nb.appendChild(nutNho("Dùng giá trần",function(){f.ban.i.value=cham(tran);tinhLai();}));}
-          goiY.appendChild(nb);}
-        if(von&&ban)goiY.appendChild(el("b",ban-von<0?"neg":"pos","Lãi mỗi cái nếu bán "+fmtVnd(ban)+": "+fmtVnd(ban-von)));}
-      [f.loai,f.gia,f.goc,f.ban,f.von,f.trang].forEach(function(o){o.i.addEventListener("input",tinhLai);o.i.addEventListener("change",tinhLai);});tinhLai();
-      f.ghi=oNhap("Ghi chú","textarea",sua?(k.ghi_chu||""):"",{maxLength:300});b.appendChild(f.ghi.l);
-      f.anh=oAnh(sua?k.anh:[],true);b.appendChild(f.anh.l);
-      f.luc=oGio(sua?"Ngày giờ nhập lần đầu":"Ngày giờ nhập",sua&&k.ngay_nhap?k.ngay_nhap:Date.now());b.appendChild(f.luc.l);
-      if(!sua){var ck=el("label","ck");f.soCk=el("input");f.soCk.type="checkbox";f.soCk.checked=true;ck.appendChild(f.soCk);ck.appendChild(document.createTextNode("Ghi tiền mua hàng (giá mua × số lượng) vào Sổ tiền"));b.appendChild(ck);}
-      else{var xo=nutNho("Xoá mặt hàng này",function(){if(QL.xoaCho!==k.id){QL.xoaCho=k.id;xo.textContent="Bấm lần nữa để xoá hẳn";return;}
-        QL.db.doc("kho/"+k.id).delete().then(function(){return QL.db.doc("kho_von/"+k.id).delete();}).then(function(){ghiNK("Xoá mặt hàng "+k.ten);dong("veilQL");},function(e){baoTam(loiLuu(e),true);});},"xoa");b.appendChild(xo);}
-    },function(){
-      var ten=sach(f.ten.i.value,80),sl=docTien(f.sl.i.value),gm=docSo(f.gia.i.value),gg=docSo(f.goc.i.value),ban=docTien(f.ban.i.value)||0,luc=docGioBE(f.luc.i.value);
-      if(!ten){baoTam("Chưa có tên hàng.",true);f.ten.i.focus();return;}
-      if(sl==null||(!sua&&sl<=0)){baoTam("Số lượng phải là số"+(sua?".":" lớn hơn 0."),true);f.sl.i.focus();return;}
-      if(!luc){baoTam("Ngày giờ chưa đúng.",true);return;}
-      if(f.anh.dangTai()){baoTam("Đợi ảnh tải xong đã.",true);return;}
-      var trg=f.trang.i.value,trMa=trg.replace(/^t:/,""),loai=f.loai.i.value;
-      var von=docTien(f.von.i.value)||vonMotCai(loai,gm,trMa)||0;
-      var than={ten:ten,loai:loai,size:sach(f.size.i.value,20),mau:sach(f.mau.i.value,30),gia_ban:ban,ghi_chu:sach(f.ghi.i.value,300),anh:f.anh.lay(),luc_sua:Date.now()};
-      var vonDoc={gia_mua_eur:gm||0,gia_goc_eur:gg||0,trang:trg,von:von};
-      $("qlLuu").disabled=true;baoTam("Đang lưu…");var p;
-      if(sua){
-        than.sl=sl;than.ngay_nhap=luc;var lech=sl-so0(k.sl);
-        p=QL.db.doc("kho/"+k.id).update(than).then(function(){return QL.db.doc("kho_von/"+k.id).set(vonDoc);})
-          .then(function(){if(lech)return QL.db.collection("phieu").add({kieu:"kiem",kho_id:k.id,ten:ten,size:than.size,mau:than.mau,sl:lech,luc:Date.now(),ai:QL.uid,ghi_chu:"Đếm lại: "+so0(k.sl)+" → "+sl});})
-          .then(function(){ghiNK("Sửa mặt hàng "+ten+(lech?" (đếm lại tồn "+so0(k.sl)+" → "+sl+")":""));});
-      }else{
-        var trung=null,khoa=(ten+"|"+than.size+"|"+than.mau).toLowerCase();
-        QL.kho.forEach(function(x){if((String(x.ten)+"|"+(x.size||"")+"|"+(x.mau||"")).toLowerCase()===khoa)trung=x;});
-        var id,ref;
-        if(trung){id=trung.id;var slCu=Math.max(0,so0(trung.sl)),vCu=QL.khoVon[id]||{},slMoi=slCu+sl;
-          than.ten=ten=trung.ten;than.size=trung.size||"";than.mau=trung.mau||"";than.loai=trung.loai||than.loai;
-          vonDoc.von=slMoi?Math.round((so0(vCu.von||von)*slCu+von*sl)/slMoi):von;
-          than.sl=slMoi;than.anh=(trung.anh||[]).concat(than.anh.filter(function(a){return (trung.anh||[]).indexOf(a)<0;})).slice(0,8);
-          if(!than.ghi_chu)than.ghi_chu=trung.ghi_chu||"";if(!ban)than.gia_ban=so0(trung.gia_ban);
-          p=QL.db.doc("kho/"+id).update(than);}
-        else{ref=QL.db.collection("kho").doc();id=ref.id;than.sl=sl;than.ngay_nhap=luc;than.ai=QL.uid;p=ref.set(than);}
-        p=p.then(function(){return QL.db.doc("kho_von/"+id).set(vonDoc);})
-          .then(function(){return QL.db.collection("phieu").add({kieu:"nhap",kho_id:id,ten:ten,size:than.size,mau:than.mau,sl:sl,luc:luc,ai:QL.uid});})
-          .then(function(pr){if(f.soCk.checked&&gm>0){var tg=noiBo?noiBo.ty_gia_von:tyGiaBao(C());
-            return QL.db.collection("so").add({loai:"chi",nhom:"Mua hàng nhập sẵn",eur:Math.round(gm*sl*100)/100,ty_gia:tg,vnd:Math.round(gm*sl*tg),ghi_chu:sl+" × "+ten+(than.size?" size "+than.size:"")+(than.mau?" "+than.mau:""),phieu_id:pr.id,luc:luc});}})
-          .then(function(){ghiNK("Nhập "+sl+" × "+ten+(than.size?" size "+than.size:"")+(than.mau?", "+than.mau:""));});
-      }
-      p.then(function(){dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },sua?"Lưu thay đổi":"Nhập vào kho");
-  }
-
-  /* ---------- bán, mất/hư, khách trả lại ---------- */
-  function moBan(k){
-    var f={};
-    moTam("Bán: "+k.ten,function(b){
-      b.appendChild(el("p","note",[k.size?"Size "+k.size:"",k.mau?"màu "+k.mau:"","còn "+so0(k.sl)+" cái"].filter(Boolean).join(" · ")));
-      var g=el("div","f2");
-      f.sl=oNhap("Số lượng bán","text","1",{inputMode:"numeric"});g.appendChild(f.sl.l);
-      f.gia=oNhap("Giá bán mỗi cái (đ)","text",so0(k.gia_ban)?cham(k.gia_ban):"",{inputMode:"numeric"});g.appendChild(f.gia.l);
-      f.khach=oNhap("Tên khách (bỏ trống: khách lẻ)","text","",{maxLength:60});g.appendChild(f.khach.l);
-      f.lh=oNhap("Zalo/SĐT khách (nếu có)","text","",{maxLength:40,inputMode:"tel"});g.appendChild(f.lh.l);
-      b.appendChild(g);
-      f.ghi=oNhap("Ghi chú","textarea","",{maxLength:200});b.appendChild(f.ghi.l);
-      if(QL.chu){var ck=el("label","ck");f.nhan=el("input");f.nhan.type="checkbox";f.nhan.checked=true;ck.appendChild(f.nhan);ck.appendChild(document.createTextNode("Khách đã trả đủ: ghi luôn vào Sổ tiền"));b.appendChild(ck);
-        b.appendChild(el("p","hint","Bỏ tick nếu khách mới cọc hoặc chưa trả. Ghi tiền sau bằng nút Nhận cọc, Ghi tiền ở mục Đơn."));}
-      else b.appendChild(el("p","hint","Tiền bán sẽ hiện ở chỗ chủ shop để xác nhận khi tiền về. Bạn không cần ghi sổ."));
-      b.appendChild(el("p","hint","Bán xong sẽ tự tạo một đơn nhãn Có sẵn trong mục Đơn."));
-    },function(){
-      var n=docTien(f.sl.i.value),gia=docTien(f.gia.i.value),con=so0(k.sl);
-      if(!n||n<=0){baoTam("Số lượng phải lớn hơn 0.",true);return;}
-      if(n>con){baoTam("Kho chỉ còn "+con+" cái.",true);return;}
-      if(!gia){baoTam("Chưa có giá bán.",true);f.gia.i.focus();return;}
-      var khach=sach(f.khach.i.value,60),nhan=QL.chu&&f.nhan.checked,t=Date.now(),lh=sach(f.lh.i.value,40),ghi=sach(f.ghi.i.value,200);
-      var dref=QL.db.collection("don").doc(),pref=QL.db.collection("phieu").doc();
-      $("qlLuu").disabled=true;baoTam("Đang lưu…");
-      QL.db.doc("kho/"+k.id).update({sl:con-n,luc_sua:t})
-        .then(function(){return pref.set({kieu:"ban",kho_id:k.id,ten:k.ten,size:k.size||"",mau:k.mau||"",sl:n,gia:gia,khach:khach,lien_he:lh,ghi_chu:ghi,cho:!QL.chu,don_id:dref.id,luc:t,ai:QL.uid});})
-        .then(function(){return dref.set({kieu:"co_san",khach:khach||"Khách lẻ",lien_he:lh,mon:[{ten:k.ten,size:k.size||"",mau:k.mau||"",sl:n,giaBan:gia,kho_id:k.id}],tong:gia*n,giam:0,trang_thai:"da_giao",dot:"",ghi_chu:ghi,su_co:null,phieu_id:pref.id,luc:t,ai:QL.uid});})
-        .then(function(){if(nhan)return QL.db.collection("so").add({loai:"thu",nhom:"Bán hàng có sẵn",vnd:gia*n,eur:0,ty_gia:0,don_id:dref.id,dot_id:"",ghi_chu:n+" × "+k.ten+(khach?" cho "+khach:""),phieu_id:pref.id,luc:t});})
-        .then(function(){ghiNK("Bán "+n+" × "+k.ten+(k.size?" size "+k.size:"")+(khach?" cho "+khach:""));dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },"Bán");
-  }
-  function moXuat(k,kieu){
-    var f={},mat=kieu==="mat";
-    moTam((mat?"Mất/hư: ":"Khách trả lại: ")+k.ten,function(b){
-      b.appendChild(el("p","note",mat?"Kho sẽ trừ số cái bị mất hoặc hư.":"Kho sẽ cộng lại số cái khách trả."+(QL.chu?" Nếu hoàn tiền cho khách, ghi thêm ở Sổ tiền.":"")));
-      f.sl=oNhap("Số lượng","text","1",{inputMode:"numeric"});b.appendChild(f.sl.l);
-      f.ghi=oNhap(mat?"Lý do":"Ghi chú (khách nào, vì sao)","textarea","",{maxLength:200});b.appendChild(f.ghi.l);
-    },function(){
-      var n=docTien(f.sl.i.value),con=so0(k.sl);
-      if(!n||n<=0){baoTam("Số lượng phải lớn hơn 0.",true);return;}
-      if(mat&&n>con){baoTam("Kho chỉ còn "+con+" cái.",true);return;}
-      var t=Date.now();$("qlLuu").disabled=true;baoTam("Đang lưu…");
-      QL.db.doc("kho/"+k.id).update({sl:mat?con-n:con+n,luc_sua:t})
-        .then(function(){return QL.db.collection("phieu").add({kieu:kieu,kho_id:k.id,ten:k.ten,size:k.size||"",mau:k.mau||"",sl:n,ghi_chu:sach(f.ghi.i.value,200),luc:t,ai:QL.uid});})
-        .then(function(){ghiNK((mat?"Báo mất/hư ":"Khách trả lại ")+n+" × "+k.ten);dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },mat?"Trừ khỏi kho":"Cộng vào kho");
-  }
-  function moAnhGhiChu(k){
-    var f={};
-    moTam("Ảnh và ghi chú: "+k.ten,function(b){f.anh=oAnh(k.anh,QL.chu);b.appendChild(f.anh.l);f.ghi=oNhap("Ghi chú","textarea",k.ghi_chu||"",{maxLength:300});b.appendChild(f.ghi.l);},
-    function(){if(f.anh.dangTai()){baoTam("Đợi ảnh tải xong đã.",true);return;}
-      $("qlLuu").disabled=true;QL.db.doc("kho/"+k.id).update({anh:f.anh.lay(),ghi_chu:sach(f.ghi.i.value,300),luc_sua:Date.now()})
-        .then(function(){ghiNK("Cập nhật ảnh, ghi chú: "+k.ten);dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});});
-  }
-  function moLichSu(k){
-    moTam("Lịch sử: "+k.ten,function(b){
-      var ds=QL.phieu.filter(function(p){return p.kho_id===k.id;});
-      if(!ds.length){b.appendChild(el("div","empty","Chưa có lần nhập, bán nào."));return;}
-      ds.forEach(function(p){var r=el("div","dong");var dau=el("div","hang");
-        var sl=so0(p.sl),dau1=(p.kieu==="ban"||p.kieu==="mat")?"−":(p.kieu==="kiem"?(sl>=0?"+":""):"+");
-        dau.appendChild(el("b",null,(KIEU_PHIEU[p.kieu]||p.kieu)+" "+dau1+sl));
-        if(p.kieu==="ban")dau.appendChild(el("span",null,fmtVnd(so0(p.gia))+"/cái"+(p.khach?" · "+p.khach:"")+(p.cho?" · chờ xác nhận tiền":"")));
-        r.appendChild(dau);if(p.ghi_chu)r.appendChild(el("div","phu",p.ghi_chu));r.appendChild(dongGio(p.luc,p.ai));
-        if(QL.chu)r.appendChild(nutNho("Sửa giờ",function(){moSuaGio("phieu/"+p.id,p.luc,"Sửa giờ: "+(KIEU_PHIEU[p.kieu]||"phiếu")+" "+k.ten);},"nho"));
-        b.appendChild(r);});
-    },null);
-  }
-
-  /* ---------- sửa giờ (chỉ chủ) ---------- */
-  function moSuaGio(path,ms,tieuDe,truong){
-    var f={};truong=truong||"luc";
-    moTam(tieuDe||"Sửa ngày giờ",function(b){f.g=oGio("Ngày giờ",ms||Date.now());b.appendChild(f.g.l);},
-    function(){var t=docGioBE(f.g.i.value);if(!t){baoTam("Ngày giờ chưa đúng.",true);return;}var d={};d[truong]=t;
-      $("qlLuu").disabled=true;QL.db.doc(path).update(d).then(function(){ghiNK((tieuDe||"Sửa giờ "+path)+" → "+haiGio(t));dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});});
-  }
-
-  /* ===================== ĐƠN ORDER ===================== */
-  /* chốt đơn từ khung báo giá: lưu khách, món, giá báo; tiền do chủ ghi riêng */
-  function moChot(){
-    if(!don.length){bao("bao2","Đơn đang trống. Bấm Thêm vào đơn trước.");return;}
-    var r=veDon(),f={};
-    moTam("Chốt đơn order",function(b){
-      var tom=el("div","note");r.dong.forEach(function(d){tom.appendChild(el("div",null,d.sl+" × "+d.ten+" (giá web "+fmtEur(d.gia)+"): "+fmtVnd(d.giaBao)));});
-      if(r.giam)tom.appendChild(el("div",null,"Giảm giá: −"+fmtVnd(r.giam)));tom.appendChild(el("b",null,"Khách trả: "+fmtVnd(r.ld.khachTra)));b.appendChild(tom);
-      var g=el("div","f2");f.khach=oNhap("Tên khách","text","",{maxLength:60});g.appendChild(f.khach.l);
-      f.lh=oNhap("Zalo/SĐT khách","text","",{maxLength:40,inputMode:"tel"});g.appendChild(f.lh.l);b.appendChild(g);
-      if(QL.chu&&QL.dot.length){f.dot=oChon("Đợt gửi hàng (có thể gán sau)",[["","Chưa gán đợt"]].concat(QL.dot.map(function(d){return [d.id,d.ten];})),"");b.appendChild(f.dot.l);}
-      if(QL.chu){f.coc=oNhap("Khách đã cọc (đ, bỏ trống nếu chưa)","text","",{inputMode:"numeric"});b.appendChild(f.coc.l);}
-      f.ghi=oNhap("Ghi chú","textarea","",{maxLength:300});b.appendChild(f.ghi.l);
-      b.appendChild(el("p","hint",QL.chu?"Tiền cọc ghi vào Sổ tiền, gắn với đơn này. Tiền còn lại bấm Ghi tiền ở đơn khi khách trả.":"Chốt đơn chỉ lưu thông tin đơn vào mục Đơn. Tiền cọc, tiền hàng do chủ shop ghi ở đơn khi tiền về."));
-    },function(){
-      var khach=sach(f.khach.i.value,60);if(!khach){baoTam("Chưa có tên khách.",true);f.khach.i.focus();return;}
-      var t=Date.now(),ref=QL.db.collection("don").doc(),coc=f.coc?docTien(f.coc.i.value):0;
-      if(coc&&coc>r.ld.khachTra){baoTam("Tiền cọc lớn hơn tổng đơn.",true);f.coc.i.focus();return;}
-      var mon=r.dong.map(function(d,i){var o=don[i]||{};return {ten:d.ten,gia:d.gia,sl:d.sl,noi:d.noi||"Web",trang:o.trang||"",giaBao:d.giaBao,can:d.can};});
-      var than={khach:khach,lien_he:sach(f.lh.i.value,40),mon:mon,tong:r.ld.khachTra,giam:r.giam||0,trang_thai:"xu_ly",dot:f.dot?f.dot.i.value:"",ghi_chu:sach(f.ghi.i.value,300),su_co:null,luc:t,ai:QL.uid};
-      $("qlLuu").disabled=true;baoTam("Đang lưu…");
-      ref.set(than).then(function(){if(QL.chu&&r.ld.lai!=null)return QL.db.doc("don_von/"+ref.id).set({von:Math.round(r.ld.von),lai:Math.round(r.ld.lai)});})
-        .then(function(){if(coc>0)return QL.db.collection("so").add({loai:"thu",nhom:"Khách đặt cọc",vnd:Math.round(coc),eur:0,ty_gia:0,don_id:ref.id,dot_id:"",ghi_chu:"",phieu_id:"",luc:t});})
-        .then(function(){ghiNK("Chốt đơn cho "+khach+" ("+mon.length+" món)"+(coc>0?", khách đã cọc":""));dong("veilQL");don=[];$("giam").value="";veDon();bao("bao2","Đã chốt đơn cho "+khach+". Xem ở mục Đơn.");},
-          function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },"Chốt đơn");
-  }
-  /* tiền của một đơn (chủ): thu, chi, cước đợt chia theo cân, lãi thật và lãi ước tính */
-  function canDon(d){var c=0;(d.mon||[]).forEach(function(m){c+=so0(m.can);});return c;}
-  function tienDon(d){
-    var thu=0,khachTra=0,coc=0,chi=0;QL.so.forEach(function(s){if(s.don_id!==d.id)return;if(s.loai==="thu"){thu+=so0(s.vnd);if(s.nhom==="Khách trả tiền order"||s.nhom==="Khách đặt cọc"||s.nhom==="Bán hàng có sẵn")khachTra+=so0(s.vnd);if(s.nhom==="Khách đặt cọc")coc+=so0(s.vnd);}else chi+=so0(s.vnd);});
-    var cuoc=0;if(d.dot&&!laCoSan(d)){var chiDot=0,tongCan=0;QL.so.forEach(function(s){if(s.loai==="chi"&&s.dot_id===d.dot&&!s.don_id)chiDot+=so0(s.vnd);});
-      QL.don.forEach(function(x){if(x.dot===d.dot&&x.trang_thai!=="huy"&&!laCoSan(x))tongCan+=canDon(x);});if(chiDot&&tongCan)cuoc=chiDot*canDon(d)/tongCan;}
-    var uoc=QL.donVon[d.id]?so0(QL.donVon[d.id].lai):null;
-    if(laCoSan(d)){uoc=null;var du=true,l=0;(d.mon||[]).forEach(function(m){var v=QL.khoVon[m.kho_id];if(v&&v.von!=null)l+=(so0(m.giaBan)-so0(v.von))*so0(m.sl);else du=false;});if(du)uoc=l-so0(d.giam);}
-    if(uoc==null&&!laCoSan(d)&&noiBo&&Array.isArray(d.mon)&&d.mon.length){var ds=gopShip(C(),d.mon.map(function(m){return {ten:m.ten,gia:m.gia,sl:m.sl,noi:m.noi,trang:m.trang};})).map(tinhDong);var ld=laiDon(noiBo,ds,so0(d.giam));uoc=ld.lai;}
-    return {thu:thu,khachTra:khachTra,coc:coc,chi:chi,cuoc:cuoc,no:Math.max(0,so0(d.tong)-khachTra),that:thu-chi-cuoc,uoc:uoc};
-  }
-  /* hai luồng đơn: order (mua bên Bỉ) và hàng có sẵn (bán từ kho). Màu riêng, không trùng đỏ/xanh lá/vàng cảnh báo */
-  function laCoSan(d){return d&&d.kieu==="co_san";}
-  function nhanLoai(d){var cs=laCoSan(d);var b=el("span","nhan "+(cs?"cosan":"order"),cs?"Có Sẵn":"Order");return b;}
-  function dotTheoId(id){for(var i=0;i<QL.dot.length;i++)if(QL.dot[i].id===id)return QL.dot[i];return null;}
-  function veDonQL(){
-    var n=noiDung();
-    var lc=el("div","chips loaic");lc.setAttribute("aria-label","Loại đơn");
-    [["","Tất cả"],["order","Order"],["co_san","Có sẵn"]].forEach(function(x){var b=el("button","chip"+(x[0]?" "+(x[0]==="co_san"?"cosan":"order"):""),x[1]);b.type="button";b.setAttribute("aria-pressed",QL.loaiLoc===x[0]?"true":"false");
-      b.addEventListener("click",function(){QL.loaiLoc=x[0];if(x[0]==="co_san")QL.dotLoc="";veDonQL();});lc.appendChild(b);});
-    n.appendChild(lc);
-    var dc=el("div","chips");if(QL.loaiLoc==="co_san")dc.hidden=true;
-    [["","Tất cả đơn"],["_chua","Chưa vào đợt"]].concat(QL.dot.map(function(d){return [d.id,d.ten];})).forEach(function(x){
-      var b=el("button","chip",x[1]);b.type="button";b.setAttribute("aria-pressed",QL.dotLoc===x[0]?"true":"false");b.addEventListener("click",function(){QL.dotLoc=x[0];veDonQL();});dc.appendChild(b);});
-    n.appendChild(dc);
-    var locDot=QL.dotLoc&&QL.dotLoc!=="_chua";
-    var ds=QL.don.filter(function(d){if(QL.loaiLoc==="co_san"&&!laCoSan(d))return false;if(QL.loaiLoc==="order"&&laCoSan(d))return false;
-      if(QL.dotLoc==="_chua"&&(d.dot||laCoSan(d)))return false;if(locDot&&d.dot!==QL.dotLoc)return false;return locDot||trongKy(so0(d.luc));});
-    if(locDot){var dt=dotTheoId(QL.dotLoc);if(dt)n.appendChild(theDot(dt));}
-    else if(QL.dotLoc==="")n.appendChild(el("p","hint","Đang lọc theo thời gian ở trên. Chọn một đợt để xem tất cả đơn trong đợt đó."));
-    if(QL.chu){var tong=0,thu=0,no=0,that=0,uoc=0,coUoc=false;
-      ds.forEach(function(d){if(d.trang_thai==="huy")return;var t=tienDon(d);tong+=so0(d.tong);thu+=t.thu;no+=t.no;that+=t.that;if(t.uoc!=null){uoc+=t.uoc;coUoc=true;}});
-      var nOrder=ds.filter(function(d){return !laCoSan(d);}).length;
-      var kp=el("div","kpis");kp.appendChild(kpi("Số đơn",ds.length+(nOrder&&nOrder<ds.length?" ("+nOrder+" order)":"")));kp.appendChild(kpi("Giá trị đơn",fmtVnd(tong)));kp.appendChild(kpi("Đã thu",fmtVnd(thu)));
-      kp.appendChild(kpi("Khách còn nợ",fmtVnd(no),no>0?"neg":null));kp.appendChild(kpi("Tiền thực vào − ra",fmtVnd(that),that<0?"neg":"pos"));if(coUoc)kp.appendChild(kpi("Lãi dự kiến",fmtVnd(uoc),uoc<0?"neg":"pos"));n.appendChild(kp);}
-    else n.appendChild(el("p","hint",ds.length+" đơn"));
-    var list=el("div","ds");
-    if(!ds.length)list.appendChild(el("div","empty",QL.loaiLoc==="co_san"?"Chưa bán hàng có sẵn nào trong khoảng này. Bán ở mục Kho.":"Chưa có đơn nào trong khoảng này. Chốt đơn ở khung báo giá."));
-    ds.forEach(function(d){list.appendChild(theDon(d));});n.appendChild(list);
-  }
-  function theDot(dt){
-    var c=el("article","kc dot"),dsDon=QL.don.filter(function(d){return d.dot===dt.id;}),can=0;dsDon.forEach(function(d){if(d.trang_thai!=="huy")can+=canDon(d);});
-    var dau=el("div","hang");dau.appendChild(el("b",null,dt.ten));dau.appendChild(el("span","badge",dsDon.length+" đơn · "+fmtKg(can)+" (ước tính)"));c.appendChild(dau);
-    c.appendChild(dongGio(dt.luc,dt.ai));if(dt.ghi_chu)c.appendChild(el("p","ghichu",dt.ghi_chu));
-    if(QL.chu){var cuoc=0;QL.so.forEach(function(s){if(s.loai==="chi"&&s.dot_id===dt.id&&!s.don_id)cuoc+=so0(s.vnd);});
-      c.appendChild(el("div","nb",cuoc?"Cước và chi phí chung của đợt: "+fmtVnd(cuoc)+", đã chia cho từng đơn theo cân.":"Chưa ghi cước cho đợt này."));
-      var nut=el("div","nut");nut.appendChild(nutNho("Thêm đơn vào đợt",function(){moGanDot(dt);},"chinh"));
-      nut.appendChild(nutNho("Ghi cước/chi phí đợt",function(){moTien({loai:"chi",nhom:"Cước Minh Quân",dot_id:dt.id});}));
-      nut.appendChild(nutNho("Sửa giờ",function(){moSuaGio("dot/"+dt.id,dt.luc,"Sửa giờ "+dt.ten);}));
-      var xo=nutNho("Xoá đợt",function(){if(dsDon.length){bao2Tam(c,"Đợt còn đơn, gỡ đơn ra khỏi đợt trước.");return;}
-        if(QL.xoaCho!==dt.id){QL.xoaCho=dt.id;xo.textContent="Bấm lần nữa để xoá";return;}QL.db.doc("dot/"+dt.id).delete().then(function(){QL.dotLoc="";ghiNK("Xoá "+dt.ten);qlVe();});},"xoa");
-      nut.appendChild(xo);c.appendChild(nut);}
-    return c;
-  }
-  /* gộp nhiều đơn vào một đợt: tick các đơn chưa vào đợt nào */
-  function moGanDot(dt){
-    var ck=[];
-    moTam("Thêm đơn vào "+dt.ten,function(b){
-      var ds=QL.don.filter(function(d){return !d.dot&&d.trang_thai!=="huy"&&!laCoSan(d);});
-      if(!ds.length){b.appendChild(el("div","empty","Không còn đơn nào chưa vào đợt."));return;}
-      b.appendChild(el("p","hint","Các đơn chưa vào đợt nào, mới nhất ở trên."));
-      ds.forEach(function(d){var l=el("label","ck"),x=el("input");x.type="checkbox";x.checked=true;x.dataset.id=d.id;ck.push(x);l.appendChild(x);
-        l.appendChild(document.createTextNode(d.khach+" · "+(d.mon||[]).length+" món · "+fmtVnd(so0(d.tong))+" · "+gioTZ(so0(d.luc),TZ_VN)));b.appendChild(l);});
-    },function(){
-      var ids=ck.filter(function(x){return x.checked;}).map(function(x){return x.dataset.id;});if(!ids.length){baoTam("Chưa chọn đơn nào.",true);return;}
-      $("qlLuu").disabled=true;baoTam("Đang lưu…");var q=Promise.resolve();
-      ids.forEach(function(id){q=q.then(function(){return QL.db.doc("don/"+id).update({dot:dt.id});});});
-      q.then(function(){ghiNK("Gộp "+ids.length+" đơn vào "+dt.ten);dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },"Thêm vào đợt");
-  }
-  function bao2Tam(c,txt){var p=c.querySelector(".toast")||c.appendChild(el("p","toast err"));p.textContent=txt;}
-  function theDon(d){
-    var cs=laCoSan(d),c=el("article","kc don "+(cs?"l-cosan":"l-order")+(d.trang_thai==="su_co"?" loi":"")),dau=el("div","hang");
-    var ten=el("div","tenkh");ten.appendChild(nhanLoai(d));ten.appendChild(el("b",null,d.khach||"Khách"));dau.appendChild(ten);
-    dau.appendChild(el("span","badge "+({xu_ly:"",da_giao:"xanh",su_co:"do",huy:""}[d.trang_thai]||""),TT_DON[d.trang_thai]||"Đang xử lý"));
-    c.appendChild(dau);
-    if(d.lien_he)c.appendChild(el("div","phu",d.lien_he));
-    c.appendChild(dongGio(so0(d.luc),d.ai));
-    var ul=el("ul","mon");(d.mon||[]).forEach(function(m){if(cs){ul.appendChild(el("li",null,so0(m.sl)+" × "+m.ten+(m.size?" · size "+m.size:"")+(m.mau?" · "+m.mau:"")+" · hàng trong kho: "+fmtVnd(so0(m.giaBan))+"/cái"));return;}ul.appendChild(el("li",null,so0(m.sl)+" × "+m.ten+" · giá web "+fmtEur(so0(m.gia))+" · "+(m.noi==="Cửa hàng"?"cửa hàng":(m.trang?(timTrang(cfg,m.trang)||{ten:m.trang}).ten:"web"))+": "+fmtVnd(so0(m.giaBao))));});c.appendChild(ul);
-    var tg=el("div","hang");tg.appendChild(el("span",null,"Khách trả"+(so0(d.giam)?" (đã giảm "+fmtVnd(d.giam)+")":"")));tg.appendChild(el("span","tien",fmtVnd(so0(d.tong))));c.appendChild(tg);
-    if(!cs){var dt=d.dot?dotTheoId(d.dot):null;c.appendChild(el("div","phu",d.dot?("Đợt: "+(dt?dt.ten:"đợt đã xoá")):"Chưa vào đợt gửi"));}
-    if(d.ghi_chu)c.appendChild(el("p","ghichu","Ghi chú: "+d.ghi_chu));
-    if(d.su_co)c.appendChild(theSuCo(d));
-    if(QL.chu){var t=tienDon(d),nb=el("div","nb");
-      nb.appendChild(el("div",null,"Khách đã trả "+fmtVnd(t.khachTra)+(t.coc?" (cọc "+fmtVnd(t.coc)+")":"")+" · còn nợ "+fmtVnd(t.no)));
-      if(t.thu>t.khachTra)nb.appendChild(el("div",null,"Thu khác của đơn "+fmtVnd(t.thu-t.khachTra)));
-      if(t.chi||t.cuoc)nb.appendChild(el("div",null,"Đã chi riêng cho đơn "+fmtVnd(t.chi)+(t.cuoc?" · cước đợt chia cho đơn "+fmtVnd(t.cuoc):"")));
-      if(t.uoc!=null){var l=el("div");l.appendChild(document.createTextNode("Lãi dự kiến: "));l.appendChild(el("b",t.uoc<0?"neg":"pos",fmtVnd(t.uoc)));
-        l.appendChild(el("span","hint"," ("+(cs?"giá bán − giá vốn trong kho":"tính lúc chốt: giá báo khách − vốn ước tính")+")"));nb.appendChild(l);}
-      if(!cs)nb.appendChild(el("div","hint","Tiền thực đã vào − ra của đơn: "+fmtVnd(t.that)+". Chưa phải lãi, vì tiền mua hàng và cước thường ghi chung theo đợt."));c.appendChild(nb);}
-    var nut=el("div","nut");
-    var tt=el("select");tt.setAttribute("aria-label","Trạng thái đơn");Object.keys(TT_DON).forEach(function(k){var o=el("option",null,TT_DON[k]);o.value=k;tt.appendChild(o);});tt.value=d.trang_thai||"xu_ly";
-    tt.addEventListener("change",function(){var v=tt.value;QL.db.doc("don/"+d.id).update({trang_thai:v}).then(function(){ghiNK("Đơn "+d.khach+": "+TT_DON[v]);},function(e){tt.value=d.trang_thai;bao2Tam(c,loiLuu(e));});});
-    nut.appendChild(tt);
-    if(!cs)nut.appendChild(nutNho(d.su_co?"Sửa sự cố":"Báo sự cố",function(){moSuCo(d);}));
-    if(QL.chu){
-      nut.appendChild(nutNho("Nhận cọc",function(){moTien({don_id:d.id,loai:"thu",nhom:"Khách đặt cọc"});},"chinh"));
-      nut.appendChild(nutNho("Ghi tiền",function(){moTien({don_id:d.id,loai:"thu",nhom:cs?"Bán hàng có sẵn":"Khách trả tiền order"});},"chinh"));
-      if(!cs){var sd=el("select");sd.setAttribute("aria-label","Gán đợt gửi");[["","Chưa vào đợt"]].concat(QL.dot.map(function(x){return [x.id,x.ten];})).forEach(function(x){var o=el("option",null,x[1]);o.value=x[0];sd.appendChild(o);});sd.value=d.dot||"";
-      sd.addEventListener("change",function(){var v=sd.value;QL.db.doc("don/"+d.id).update({dot:v}).then(function(){ghiNK("Đơn "+d.khach+" → "+(v?(dotTheoId(v)||{}).ten:"bỏ khỏi đợt"));},function(e){bao2Tam(c,loiLuu(e));});});
-      nut.appendChild(sd);}
-      nut.appendChild(nutNho("Sửa giờ",function(){moSuaGio("don/"+d.id,d.luc,"Sửa giờ đơn "+d.khach);}));
-      var xo=nutNho("Xoá đơn",function(){var ro=tienRongDon(d);
-        if(QL.xoaCho!==d.id){QL.xoaCho=d.id;xo.textContent="Bấm lần nữa để xoá"+(ro>0?" (tự ghi chi "+fmtVnd(ro)+")":"");return;}
-        xoaDon(d,c);},"xoa");
-      xo.title=(cs?"Hàng tự trả về kho. ":"")+"Nếu đơn đã thu tiền, sổ tự ghi một khoản chi bằng số tiền đó để cân đối.";nut.appendChild(xo);}
-    c.appendChild(nut);return c;
-  }
-  /* tiền ròng còn nằm ở đơn = các khoản thu gắn đơn − các khoản chi gắn đơn (không tính cước chung của đợt) */
-  function tienRongDon(d){var r=0;QL.so.forEach(function(s){if(s.don_id!==d.id)return;r+=s.loai==="thu"?so0(s.vnd):-so0(s.vnd);});return Math.max(0,Math.round(r));}
-  /* xoá đơn: giữ nguyên các khoản đã ghi, tự ghi thêm một khoản chi để cân đối; đơn có sẵn thì trả hàng về kho và bỏ phiếu bán (kể cả phiếu chờ xác nhận) */
-  function xoaDon(d,c){
-    var cs=laCoSan(d),ro=tienRongDon(d),t=Date.now(),q=Promise.resolve();
-    if(ro>0)q=q.then(function(){return QL.db.collection("so").add({loai:"chi",nhom:"Hoàn tiền khách",vnd:ro,eur:0,ty_gia:0,don_id:d.id,dot_id:"",
-      ghi_chu:"Tự ghi khi xoá đơn "+(cs?"Có Sẵn":"Order")+" của "+(d.khach||"khách")+": cân đối "+fmtVnd(ro)+" đã thu",phieu_id:"",tu_dong:true,luc:t});});
-    if(cs)xoaDonCoSanKho(d,function(p){q=q.then(p);});
-    q.then(function(){return QL.db.doc("don/"+d.id).delete();})
-      .then(function(){if(!cs)return QL.db.doc("don_von/"+d.id).delete();})
-      .then(function(){ghiNK("Xoá đơn "+(cs?"Có Sẵn":"Order")+" của "+d.khach+(cs?", trả hàng về kho":"")+(ro>0?", tự ghi chi cân đối":""));
-        if(cs||ro>0)baoNhanh((cs?"Đã trả hàng về kho. ":"")+(ro>0?"Sổ tiền đã tự ghi khoản chi "+fmtVnd(ro)+" (Hoàn tiền khách) để cân đối.":""));},
-        function(e){bao2Tam(c,loiLuu(e));});
-  }
-  function xoaDonCoSanKho(d,them){
-    var q=Promise.resolve();
-    (d.mon||[]).forEach(function(m){if(!m.kho_id)return;var k=khoTheoId(m.kho_id);if(k)q=q.then(function(){return QL.db.doc("kho/"+k.id).update({sl:so0(k.sl)+so0(m.sl),luc_sua:Date.now()});});});
-    if(d.phieu_id)q=q.then(function(){return QL.db.doc("phieu/"+d.phieu_id).delete();});
-    them(function(){return q;});
-  }
-  function theSuCo(d){
-    var s=d.su_co,w=el("div","suco");
-    w.appendChild(el("b",null,(s.loai==="hu"?"Hư một phần":"Mất hẳn")+" · báo lúc "+haiGio(so0(s.luc))+" · "+tenNguoi(s.ai)));
-    if(s.ghi_chu)w.appendChild(el("div",null,s.ghi_chu));
-    var mon=(d.mon||[]).filter(function(m,i){return !Array.isArray(s.mon)||!s.mon.length||s.mon.indexOf(i)>=0;});
-    mon.forEach(function(m){w.appendChild(el("div","phu",goiYDen(m)));});
-    if(Array.isArray(s.anh)&&s.anh.length){var a=el("div","anhs");s.anh.forEach(function(id,i){var im=el("img");datAnh(im,id);im.alt="Ảnh sự cố "+(i+1);a.appendChild(im);});w.appendChild(a);}
-    if(QL.chu){var nut=el("div","nut");
-      nut.appendChild(nutNho("Hoàn tiền khách",function(){moTien({don_id:d.id,loai:"chi",nhom:"Hoàn tiền khách"});}));
-      nut.appendChild(nutNho("Mua lại hàng",function(){moTien({don_id:d.id,loai:"chi",nhom:"Mua lại hàng"});}));
-      nut.appendChild(nutNho("Hãng đền",function(){moTien({don_id:d.id,loai:"thu",nhom:"Hãng đền"});}));w.appendChild(nut);}
-    return w;
-  }
-  function goiYDen(m){var ts=cfg.thong_so,g=so0(m.gia);
-    if(g>=ts.nguong_bh)return m.ten+" "+fmtEur(g)+": có bảo hiểm, hãng đền 100%, tối đa "+fmtEur(ts.tran_den,0)+"/món.";
-    return m.ten+" "+fmtEur(g)+": không bảo hiểm, hãng đền theo cân, tối đa "+DEN_KG_KHONG_BH+" €/kg ≈ "+fmtEur(DEN_KG_KHONG_BH*so0(m.can))+".";}
-  function moSuCo(d){
-    var f={},s=d.su_co||{};
-    moTam("Sự cố đơn: "+d.khach,function(b){
-      b.appendChild(el("p","note","Báo Minh Quân càng sớm càng tốt: hãng yêu cầu khiếu nại trong 2 giờ sau khi nhận hàng. Chụp ảnh kiện và món hàng làm bằng chứng."));
-      f.loai=oChon("Chuyện gì xảy ra",[["mat","Mất hẳn"],["hu","Hư một phần"]],s.loai||"mat");b.appendChild(f.loai.l);
-      var w=el("fieldset","qlf");w.appendChild(el("legend",null,"Món bị ảnh hưởng"));f.ck=[];
-      (d.mon||[]).forEach(function(m,i){var l=el("label","ck"),x=el("input");x.type="checkbox";x.checked=!Array.isArray(s.mon)||!s.mon.length||s.mon.indexOf(i)>=0;f.ck.push(x);l.appendChild(x);l.appendChild(document.createTextNode(m.sl+" × "+m.ten+" ("+fmtEur(so0(m.gia))+")"));w.appendChild(l);w.appendChild(el("div","hint",goiYDen(m)));});
-      b.appendChild(w);
-      f.ghi=oNhap("Ghi chú (đã báo Minh Quân chưa, mã kiện…)","textarea",s.ghi_chu||"",{maxLength:400});b.appendChild(f.ghi.l);
-      f.anh=oAnh(s.anh,QL.chu);b.appendChild(f.anh.l);
-      if(d.su_co&&QL.chu){var go=nutNho("Gỡ báo sự cố (đã xử lý xong)",function(){QL.db.doc("don/"+d.id).update({su_co:null,trang_thai:"xu_ly"}).then(function(){ghiNK("Gỡ sự cố đơn "+d.khach);dong("veilQL");});},"");b.appendChild(go);}
-      if(QL.chu)b.appendChild(el("p","hint","Ghi tiền hoàn khách, mua lại, hãng đền bằng các nút trong khung sự cố của đơn."));
-    },function(){
-      if(f.anh.dangTai()){baoTam("Đợi ảnh tải xong đã.",true);return;}
-      var mon=[];f.ck.forEach(function(x,i){if(x.checked)mon.push(i);});if(!mon.length){baoTam("Chọn ít nhất một món.",true);return;}
-      var sc={loai:f.loai.i.value,mon:mon,ghi_chu:sach(f.ghi.i.value,400),anh:f.anh.lay(),luc:s.luc||Date.now(),ai:s.ai||QL.uid};
-      $("qlLuu").disabled=true;QL.db.doc("don/"+d.id).update({su_co:sc,trang_thai:"su_co"})
-        .then(function(){ghiNK("Báo sự cố đơn "+d.khach+": "+(sc.loai==="hu"?"hư một phần":"mất hẳn"));dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },"Lưu sự cố");
-  }
-  function moTaoDot(){
-    var f={};
-    moTam("Tạo đợt gửi hàng",function(b){
-      b.appendChild(el("p","note","Mỗi lần gom hàng gửi Minh Quân là một đợt. Gán đơn vào đợt, rồi ghi cước của cả kiện: web chia cước cho từng đơn theo cân."));
-      f.ten=oNhap("Tên đợt","text","Đợt "+(QL.dot.length+1)+" · "+ngayDep(ngayKey(Date.now())),{maxLength:40});b.appendChild(f.ten.l);
-      f.ghi=oNhap("Ghi chú (mã kiện, số kg thật…)","textarea","",{maxLength:300});b.appendChild(f.ghi.l);
-      f.luc=oGio("Ngày giờ gửi",Date.now());b.appendChild(f.luc.l);
-    },function(){var ten=sach(f.ten.i.value,40),t=docGioBE(f.luc.i.value);if(!ten||!t){baoTam("Thiếu tên đợt hoặc ngày giờ.",true);return;}
-      $("qlLuu").disabled=true;QL.db.collection("dot").add({ten:ten,ghi_chu:sach(f.ghi.i.value,300),luc:t,ai:QL.uid})
-        .then(function(r){ghiNK("Tạo "+ten);QL.dotLoc=r.id;dong("veilQL");veDonQL();},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});},"Tạo đợt");
-  }
-
-  /* ===================== SỔ TIỀN (chỉ chủ) ===================== */
-  function moTien(s){
-    var sua=!!s.id,f={},loai=s.loai||"thu";
-    moTam(sua?"Sửa khoản tiền":"Ghi khoản thu/chi",function(b){
-      var sg=el("div","seg2");[["thu","Tiền vào (thu)"],["chi","Tiền ra (chi)"]].forEach(function(x){var nb=el("button",null,x[1]);nb.type="button";nb.setAttribute("aria-pressed",loai===x[0]?"true":"false");
-        nb.addEventListener("click",function(){loai=x[0];sg.querySelectorAll("button").forEach(function(y){y.setAttribute("aria-pressed",y===nb?"true":"false");});veNhom();});sg.appendChild(nb);});b.appendChild(sg);
-      f.nhom=oNhap("Loại khoản","select");b.appendChild(f.nhom.l);
-      function veNhom(){var cu=f.nhom.i.value||s.nhom;f.nhom.i.textContent="";(loai==="thu"?NHOM_THU:NHOM_CHI).forEach(function(x){var o=el("option",null,x);o.value=x;f.nhom.i.appendChild(o);});
-        if((loai==="thu"?NHOM_THU:NHOM_CHI).indexOf(cu)>=0)f.nhom.i.value=cu;}
-      veNhom();
-      var g=el("div","f2");
-      f.dv=oChon("Đơn vị",[["vnd","Đồng (đ)"],["eur","Euro (€)"]],s.eur?"eur":"vnd");g.appendChild(f.dv.l);
-      f.tien=oNhap("Số tiền","text",s.eur?gon(s.eur,2):(s.vnd?cham(s.vnd):""),{inputMode:"decimal"});g.appendChild(f.tien.l);
-      f.tg=oNhap("Tỷ giá (đ/€)","text",cham(Math.round(s.ty_gia||(noiBo?noiBo.ty_gia_von:tyGiaBao(C())))),{inputMode:"numeric"});g.appendChild(f.tg.l);
-      var dsDon=QL.don.slice(0,80).map(function(d){return [d.id,d.khach+" · "+gioTZ(so0(d.luc),TZ_VN).slice(6)];});
-      if(s.don_id&&!dsDon.some(function(x){return x[0]===s.don_id;}))dsDon.unshift([s.don_id,"Đơn đã chọn"]);
-      f.don=oChon("Thuộc đơn order (nếu có)",[["","Không thuộc đơn nào"]].concat(dsDon),s.don_id||"");g.appendChild(f.don.l);
-      f.dot=oChon("Thuộc đợt gửi (cước, chi phí chung)",[["","Không thuộc đợt nào"]].concat(QL.dot.map(function(x){return [x.id,x.ten];})),s.dot_id||"");g.appendChild(f.dot.l);
-      b.appendChild(g);
-      var quy=el("div","hint");b.appendChild(quy);
-      function veQuy(){var eur=f.dv.i.value==="eur";f.tg.l.hidden=!eur;var x=eur?docSo(f.tien.i.value):docTien(f.tien.i.value),tg=docTien(f.tg.i.value);
-        quy.textContent=eur&&x&&tg?("Quy đổi: "+fmtVnd(x*tg)):"";}
-      [f.dv,f.tien,f.tg].forEach(function(o){o.i.addEventListener("input",veQuy);o.i.addEventListener("change",veQuy);});veQuy();
-      f.ghi=oNhap("Ghi chú","textarea",s.ghi_chu||"",{maxLength:300});b.appendChild(f.ghi.l);
-      f.luc=oGio("Ngày giờ",s.luc||Date.now());b.appendChild(f.luc.l);
-      if(sua){var xo=nutNho("Xoá khoản này",function(){if(QL.xoaCho!==s.id){QL.xoaCho=s.id;xo.textContent="Bấm lần nữa để xoá";return;}
-        QL.db.doc("so/"+s.id).delete().then(function(){ghiNK("Xoá khoản sổ tiền: "+(s.loai==="thu"?"thu":"chi")+" – "+s.nhom+moTaDon(s.don_id,s.dot_id));dong("veilQL");},function(e){baoTam(loiLuu(e),true);});},"xoa");b.appendChild(xo);}
-    },function(){
-      var eur=f.dv.i.value==="eur",x=eur?docSo(f.tien.i.value):docTien(f.tien.i.value),tg=docTien(f.tg.i.value),t=docGioBE(f.luc.i.value);
-      if(!x||x<=0){baoTam("Số tiền phải lớn hơn 0.",true);f.tien.i.focus();return;}
-      if(eur&&!tg){baoTam("Thiếu tỷ giá.",true);return;}
-      if(!t){baoTam("Ngày giờ chưa đúng.",true);return;}
-      var than={loai:loai,nhom:f.nhom.i.value,vnd:Math.round(eur?x*tg:x),eur:eur?Math.round(x*100)/100:0,ty_gia:eur?tg:0,don_id:f.don.i.value,dot_id:f.dot.i.value,ghi_chu:sach(f.ghi.i.value,300),phieu_id:s.phieu_id||"",luc:t};
-      $("qlLuu").disabled=true;baoTam("Đang lưu…");
-      (sua?QL.db.doc("so/"+s.id).set(than):QL.db.collection("so").add(than)).then(function(){ghiNK((sua?"Sửa sổ tiền: ":"Ghi sổ tiền: ")+(loai==="thu"?"thu":"chi")+" – "+than.nhom+moTaDon(than.don_id,than.dot_id));dong("veilQL");},function(e){$("qlLuu").disabled=false;baoTam(loiLuu(e),true);});
-    },sua?"Lưu thay đổi":"Ghi vào sổ");
-  }
-  function moTaDon(donId,dotId){var x=[];if(donId){var d=null;QL.don.forEach(function(y){if(y.id===donId)d=y;});x.push("đơn "+(d?d.khach:"đã xoá"));}
-    if(dotId){var dt=dotTheoId(dotId);x.push(dt?dt.ten:"đợt đã xoá");}return x.length?" ("+x.join(", ")+")":"";}
-  function xacNhanBan(p,nhan,c){
-    var t=Date.now(),pr=QL.db.doc("phieu/"+p.id);
-    var q=nhan?QL.db.collection("so").add({loai:"thu",nhom:"Bán hàng có sẵn",vnd:so0(p.gia)*so0(p.sl),eur:0,ty_gia:0,don_id:p.don_id||"",dot_id:"",ghi_chu:p.sl+" × "+p.ten+(p.khach?" cho "+p.khach:""),phieu_id:p.id,luc:t}).then(function(){return pr.update({cho:false,xac_nhan_luc:t});})
-      :pr.update({cho:false,khong_thu:true,xac_nhan_luc:t});
-    q.then(function(){ghiNK((nhan?"Xác nhận đã nhận tiền: bán ":"Không thu được tiền: bán ")+p.sl+" × "+p.ten);},function(e){bao2Tam(c,loiLuu(e));});
-  }
-  function veSo(){
-    var n=noiDung();
-    var cho=QL.phieu.filter(function(p){return p.kieu==="ban"&&p.cho===true;});
-    if(cho.length){var w=el("section","kc cho");w.appendChild(el("b",null,"Chờ bạn xác nhận tiền ("+cho.length+")"));
-      w.appendChild(el("p","hint","Nhân viên đã bán hàng có sẵn. Tiền về tài khoản rồi thì bấm Đã nhận tiền, sổ mới ghi khoản thu."));
-      cho.forEach(function(p){var r=el("div","dong"),h=el("div","hang");h.appendChild(el("span",null,"Bán "+p.sl+" × "+p.ten+(p.size?" size "+p.size:"")+(p.khach?" cho "+p.khach:"")));h.appendChild(el("span","tien thu",fmtVnd(so0(p.gia)*so0(p.sl))));r.appendChild(h);
-        r.appendChild(dongGio(p.luc,p.ai));var nut=el("div","nut");nut.appendChild(nutNho("Đã nhận tiền",function(){xacNhanBan(p,true,r);},"chinh"));nut.appendChild(nutNho("Không thu được",function(){xacNhanBan(p,false,r);}));r.appendChild(nut);w.appendChild(r);});
-      n.appendChild(w);}
-    var ds=QL.so.filter(function(s){return trongKy(so0(s.luc));}),thu=0,chi=0,theoNhom={};
-    ds.forEach(function(s){var v=so0(s.vnd);if(s.loai==="thu")thu+=v;else chi+=v;var k=(s.loai==="thu"?"Thu: ":"Chi: ")+s.nhom;theoNhom[k]=(theoNhom[k]||0)+v;});
-    var kp=el("div","kpis");kp.appendChild(kpi("Tiền vào",fmtVnd(thu),"pos"));kp.appendChild(kpi("Tiền ra",fmtVnd(chi),"neg"));kp.appendChild(kpi("Chênh lệch",fmtVnd(thu-chi),thu-chi<0?"neg":"pos"));n.appendChild(kp);
-    var ks=Object.keys(theoNhom);if(ks.length){var bn=el("details","kc");bn.appendChild(el("summary",null,"Theo từng loại khoản"));
-      ks.sort(function(a,b){return theoNhom[b]-theoNhom[a];}).forEach(function(k){var h=el("div","hang");h.appendChild(el("span",null,k));h.appendChild(el("b",null,fmtVnd(theoNhom[k])));bn.appendChild(h);});n.appendChild(bn);}
-    var list=el("div","ds"),ngayTruoc="";
-    if(!ds.length)list.appendChild(el("div","empty","Chưa có khoản nào trong khoảng này."));
-    ds.forEach(function(s){var k=ngayKey(so0(s.luc));if(k!==ngayTruoc){ngayTruoc=k;list.appendChild(el("div","ngayh",ngayDep(k)+" (giờ Việt Nam)"));}
-      var r=el("div","dong so"),h=el("div","hang");h.appendChild(el("span",null,s.nhom));h.appendChild(el("span","tien "+(s.loai==="thu"?"thu":"chi"),(s.loai==="thu"?"+":"−")+fmtVnd(so0(s.vnd))));r.appendChild(h);
-      var phu=[];if(s.eur)phu.push(fmtEur(s.eur)+" × "+cham(s.ty_gia));if(s.don_id){var d=null;QL.don.forEach(function(x){if(x.id===s.don_id)d=x;});phu.push("Đơn "+(d?d.khach:"đã xoá"));}
-      if(s.dot_id){var dt=dotTheoId(s.dot_id);phu.push(dt?dt.ten:"Đợt đã xoá");}if(s.ghi_chu)phu.push(s.ghi_chu);if(phu.length)r.appendChild(el("div","phu",phu.join(" · ")));
-      r.appendChild(dongGio(so0(s.luc)));r.appendChild(nutNho("Sửa",function(){moTien(s);},"nho"));list.appendChild(r);});
-    n.appendChild(list);
-  }
-
-  /* ===================== NHẬT KÝ ===================== */
-  function veNK(){
-    var n=noiDung(),ds=[];
-    QL.nk.forEach(function(d){(d.ds||[]).forEach(function(x){if(trongKy(so0(x.t)))ds.push({t:so0(x.t),v:x.v,ai:d.ai});});});
-    ds.sort(function(a,b){return b.t-a.t;});
-    n.appendChild(el("p","hint","Ghi lại ai làm gì, lúc nào: nhập, bán, chốt đơn, sự cố, sửa giờ, ghi sổ tiền. Nhân viên cũng xem được mục này nên không hiện số tiền; số tiền xem ở Sổ tiền."));
-    var list=el("div","ds"),ngayTruoc="";if(!ds.length)list.appendChild(el("div","empty","Chưa có hoạt động nào trong khoảng này."));
-    ds.slice(0,500).forEach(function(x){var k=ngayKey(x.t);if(k!==ngayTruoc){ngayTruoc=k;list.appendChild(el("div","ngayh",ngayDep(k)));}
-      var r=el("div","dong");r.appendChild(el("div",null,x.v));r.appendChild(dongGio(x.t,x.ai));list.appendChild(r);});
-    n.appendChild(list);
-  }
+  ["veilCD","veilChep"].forEach(function(id){$(id).addEventListener("click",function(e){if(e.target===this)dong(id);});});
   veLai();ketNoi();
 })();
-if(typeof module!=="undefined")module.exports={MAC_DINH:MAC_DINH,tinhGia:tinhGia,shipTrang:shipTrang,timTrang:timTrang,gopShip:gopShip,laiDon:laiDon,chuanHoa:chuanHoa,chuanNB:chuanNB,fmtVnd:fmtVnd,fmtEur:fmtEur,docSo:docSo,haiGio:haiGio,mocKy:mocKy,docGioBE:docGioBE,oGioBE:oGioBE,ngayKey:ngayKey};
+if(typeof module!=="undefined")module.exports={MAC_DINH:MAC_DINH,tinhGia:tinhGia,shipTrang:shipTrang,timTrang:timTrang,gopShip:gopShip,laiDon:laiDon,chuanHoa:chuanHoa,chuanNB:chuanNB,fmtVnd:fmtVnd,fmtEur:fmtEur,docSo:docSo};
 </script>
 </body>
 </html>
